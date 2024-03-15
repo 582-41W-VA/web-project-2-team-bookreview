@@ -25,7 +25,7 @@ The scope of this project encompasses the design and development of a comprehens
 - Digital branding.
 - User registration and authentication system.
 - Advanced search, filtering, and sorting functionalities for books by author and title.
-- Member/User specific features such as submitting reviews, adding books to the personal space, and participating in discussions with comments.
+- Member/User specific features such as adding books to the personal space, and submitting reviews in the comment form, participating in discussions with other members.
 - Administrative capabilities for managing user accounts, moderating content, accessing analytics reports, and important content from a third party.
 - Seamless integration of social media links of the company to facilitate community engagement and content sharing.
 - Responsive design and intuitive user interface optimization for enhanced accessibility across devices.
@@ -98,8 +98,8 @@ Our proposed web project aims to address the evolving needs of LTR by providing 
 
 **Deliverables:**
 
-- Static Coding: Completing static coding for reviews and comments.
-- User-Generated Content Management: Implemented features allowing logged-in users to submit, edit, and delete book reviews.
+- Static Coding: Completing static coding for reviews ( comments are called reviews).
+- User-Generated Content Management: Implemented features allowing logged-in users to submit, edit, and delete their reviews (comments).
 - Front-End Design for user-generated content: Completing front-end coding for reviews.
 - Source Code: Sharing source code for the completed sections, including docstrings and testing.
 
@@ -107,10 +107,9 @@ Our proposed web project aims to address the evolving needs of LTR by providing 
 
 **Deliverables:**
 
-- Commenting Functionality for Logged-in Users: Users can add, edit, and delete comments on book reviews they have access to.
-- Admin Dashboard for Generating Statistics: Admin dashboard with tools to generate statistics on registered users, content quantity and metadata, and comments per review.
+- Admin Dashboard for Generating Statistics: Admin dashboard with tools to generate statistics on registered users, content quantity and metadata.
 - Content Filtering, Searching, and Sorting for Users: Users can filter, search, and sort content based on various criteria, enhancing their browsing experience.
-- Front End Design for comment section and admin and search pages: Delivering final look for all pages including comment section and admin and search pages.
+- Front End Design for admin and search pages: Delivering final look for all pages including admin and search pages.
 - Member Personal Page / Favorites Management for Logged-in Users: Users can favorite books and access them from their personal accounts, ensuring privacy.
 - Source Code: Sharing source code for the completed sections, including docstrings and testing.
 
