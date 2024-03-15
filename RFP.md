@@ -110,7 +110,7 @@ Our proposed web project aims to address the evolving needs of LTR by providing 
 - Commenting Functionality for Logged-in Users: Users can add, edit, and delete comments on book reviews they have access to.
 - Admin Dashboard for Generating Statistics: Admin dashboard with tools to generate statistics on registered users, content quantity and metadata, and comments per review.
 - Content Filtering, Searching, and Sorting for Users: Users can filter, search, and sort content based on various criteria, enhancing their browsing experience.
-- Front End Design for comment section and admin and search pages: Delivering final look for comment section and admin and search pages.
+- Front End Design for comment section and admin and search pages: Delivering final look for all pages including comment section and admin and search pages.
 - Member Personal Page / Favorites Management for Logged-in Users: Users can favorite books and access them from their personal accounts, ensuring privacy.
 - Source Code: Sharing source code for the completed sections, including docstrings and testing.
 
