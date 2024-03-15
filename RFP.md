@@ -118,3 +118,25 @@ Our proposed web project aims to address the evolving needs of LTR by providing 
 
 - Conduct Final Website Check: Perform a thorough review of the entire website to ensure all components are functioning correctly and meet project requirements.
 - Prepare Final Presentation: Compile a comprehensive presentation showcasing the completed web project, highlighting key features, functionalities, and achievements
+    ***END OF RFP***
+
+# Phase 01 Submission Notes
+
+We have decided to manage the project collaboratively with all members contributing to various aspects. Below are the designated project management duties:
+
+- **Aysegul Aksu:** General planning and management issues.
+- **Shima Deljavan Farshi:** Planning and management of design.
+- **Fransiskus Aldo:** Planning and management of development.
+- **Haitham Barakat:** Planning and management of GitHub.
+
+- All team members contributed to project ideation and research activities, and everyone took part in the decision-making process.
+
+- Development team members Haitham and Fransiskus provided input regarding the functionality of the project based on the decided project idea.
+- Design team members Aysegul and Shima provided input regarding design aspects.
+
+Specific tasks performed by team members include:
+- Shima cloned the GitHub repository.
+- Haitham managed GitHub submissions.
+- Aysegul compiled the final project report based on the input provided by the team ( Aysegul, Fransiskus,Haitham and Shima.)
+
+
