@@ -118,6 +118,21 @@ Our proposed web project aims to address the evolving needs of LTR by providing 
 
 - Conduct Final Website Check: Perform a thorough review of the entire website to ensure all components are functioning correctly and meet project requirements.
 - Prepare Final Presentation: Compile a comprehensive presentation showcasing the completed web project, highlighting key features, functionalities, and achievements
+
+### Communication Plan
+
+To ensure effective collaboration and transparency throughout the project lifecycle, we propose the following communication plan:
+
+- **Weekly Progress Meetings:** Meetings with LTR liaisons and LTR Project Team Members via Microsoft Teams will be held every Friday at 11:30 a.m.
+
+- **Internal Team Update Meeting:** Internal team update meetings will occur every Monday and Thursday at 11:30 a.m. via Microsoft Teams.
+
+- **Feedback, Questions, Comments:** Team members and LTR liaisons will have the ability to provide feedback, make comments, and ask questions via Trello at any time of the day. Additionally, communication channels such as Teams and email will remain open throughout the project duration.
+
+- **Flow of Information: Development Process Updates, Version Control Changes:** GitHub tools will facilitate communication within the team for reporting issues, sharing code, and managing collaboration and planning.
+
+- **Other Flow of Information Tools:** The team's internal website will serve as a platform for submitting visual deliverables and will provide access to all team reports and official documents. LTR will have read-only access to the website. Access our internal website here: (https://aysegul90.web582.com/webproject/index.html).
+
     ***END OF RFP***
 
 # Phase 01 Submission Notes
