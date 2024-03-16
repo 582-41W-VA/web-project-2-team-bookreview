@@ -1,0 +1,38 @@
+# Request for proposal
+
+## Introduction
+LTR, Love To Read, began in 1986. It was created by a couple of good friends who shared a passion for reading and spreading the word about new books and genres. Our little book club soon grew beyond our humble expectations. We gathered a large membership and opened chapters in different cities across the country.
+
+This is a formal proposal to turn LTR, Love To Read, into a North American book club, and for that, we need to go digital.
+
+## Project Background
+In light of the challenges faced by LTR following the COVID-19 pandemic, it has become increasingly apparent that embracing digital solutions is essential for sustained growth and adaptation.
+
+The limitations on in-person gatherings have underscored the importance of establishing a robust online presence to reach and engage with your audience effectively. Thus, the creation of an online book review website presents an invaluable opportunity for LTR to revitalize its operations, connect with readers, and expand its influence in the literary world.
+
+## Objectives
+**These are the objectives we would like to reach:**
+
+- Establish a compelling online platform to broaden LTR's reach and engage with a wider audience.
+- Provide a user-friendly interface that encourages active participation, fosters discussions, and facilitates the exchange of ideas among members.
+- Enhance brand visibility and attract new members through branding and community-building efforts.
+- Empower administrators with intuitive tools for content management, user moderation, and performance analysis to drive informed decision-making.
+- Cultivate a vibrant online community that fosters a sense of belonging, encourages exploration, and celebrates the richness of literature.
+
+## Scope of Work
+The scope of this project encompasses the design and development of a comprehensive web application tailored to LTR's specific requirements, including:
+
+- Digital branding.
+- User registration and authentication system.
+- Advanced search, filtering, and sorting functionalities for books by author and title.
+- Member/User-specific features such as submitting reviews and participating in discussions with comments. Members/Users also have their own personal page, where they can see all of their own reviews.
+- Administrative capabilities for managing user accounts, moderating content, accessing analytics reports, and importing content from a third party.
+- Seamless integration of social media links of the company to facilitate community engagement and content sharing.
+- Responsive design and intuitive user interface optimization for enhanced accessibility across devices.
+
+Kind Regards,
+
+Ford Prefect  
+Director of Communication  
+LTR: Love To Read
+
