@@ -96,8 +96,6 @@ The selection of these technologies is informed by their suitability for the pro
 - **Conduct Final Website Check:** Perform a thorough review of the entire website to ensure all components are functioning correctly and meet project requirements.
 - **Prepare Final Presentation:** Compile a comprehensive presentation showcasing the completed web project, highlighting key features, functionalities, and achievements.
 
-**Note:** As agreed upon, the deployment of the project will be handled by LTR.
-
 ## Communication Plan
 
 To ensure effective collaboration and transparency throughout the project lifecycle, we propose the following communication plan:
@@ -116,4 +114,4 @@ Warm regards,
 
 Aysegul Aksu, Haitham Barakat, Fransiskus Aldo, Shima Deljavan Farshi
 
-41 Web Dev Team Members
+Web Dev Team Members
