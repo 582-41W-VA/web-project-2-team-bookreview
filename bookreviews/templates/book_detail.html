@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ book.title }}</title>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'bookreviews/css/style.css' %}">
+</head>
+<body>
+
+
+    <h1>{{ book.title }}</h1>
+    <p><strong>Author:</strong> {{ book.author }}</p>
+    <p><strong>Description:</strong> {{ book.description }}</p>
+    
+    <h2>Reviews</h2>
+    <ul>
+        {% for review in reviews %}
+            <li>{{ review.user.username }}: {{ review.comment }} ({{ review.rating }}/5)</li>
+            {% if review.user == request.user %}
+            <a href="{% url 'edit_review' review.id %}">Edit</a>
+            <a href="{% url 'delete_review' review.id %}">Delete</a>
+            {% endif %}
+        {% empty %}
+            <li>No reviews yet.</li>
+        {% endfor %}
+    </ul>
+    
+    
+    <a href="{% url 'leave_review' book.id %}">Leave a review</a>
+
+</body>
+</html>
+
+{% endblock %}
