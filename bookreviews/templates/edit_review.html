@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit Review {% endblock %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Review</title>
+</head>
+<body>
+    <h1>Edit Review</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn" type="submit">Save Changes</button>
+        <button class="btn"><a href="{% url 'book_detail' book.id %}">Cancel</a></button>
+    </form>
+</body>
+</html>
+
+{% endblock %}
