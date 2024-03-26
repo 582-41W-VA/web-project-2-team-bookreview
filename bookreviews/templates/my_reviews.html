@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit Review {% endblock %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Reviews</title>
+</head>
+
+<body>
+    <h1>My Reviews</h1>
+    <ul>
+        {% for item in reviews_with_books %}
+        <li>
+            Review for: <a href="{% url 'book_detail' item.review.book_id %}">{{ item.book.title }}</a>
+            | Rating: {{ item.review.rating }}/5
+            | Review content: {{ item.review.comment }}
+        </li>
+        {% empty %}
+        <li>No reviews found.</li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
+
+{% endblock %}
