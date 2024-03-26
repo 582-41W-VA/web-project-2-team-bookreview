@@ -19,22 +19,44 @@
     <p><strong>Author:</strong> {{ book.author }}</p>
     <p><strong>Description:</strong> {{ book.description }}</p>
     <img src="{{book.image}}" alt="">
-    
-    <h2>Reviews</h2>
+    <P>
+        <a href="{% url 'leave_review' book.id %}">Leave a review</a>
+    </P>
+    <h2>Reviews:</h2>
     <ul>
         {% for review in reviews %}
-            <li>{{ review.user.username }}: {{ review.comment }} ({{ review.rating }}/5 )</li>
-            {% if review.user == request.user %}
-            <a href="{% url 'edit_review' review.id %}">Edit</a>
-            <a href="{% url 'delete_review' review.id %}">Delete</a>
-            {% endif %}
+            <li>
+                Reviewer: {{ review.user.username }} | Review: {{ review.comment }} | Rating: ({{ review.rating }}/5)
+                {% if review.user == request.user %}
+                    <a href="{% url 'edit_review' review.id %}">Edit Review</a>
+                    <a href="{% url 'delete_review' review.id %}">Delete Review</a>
+                {% endif %}
+            </li>
+            <!-- Display comments on this review -->
+            
+                <h2>Comments on this review:</h2>
+                {% for comment in review.commenting_set.all %}
+                    <p>- User {{ comment.user.username }}'s comment: {{ comment.comment_text }}</p>
+                {% empty %}
+                    <p>No comments yet.</p>
+                {% endfor %}
+            
+            <!-- Comment form for adding a comment to the review -->
+            <form method="post" action="{% url 'add_comment_to_review' review.id %}">
+                {% csrf_token %}
+                <fieldset class="comment_form">
+                    <legend>Add a comment to this review:</legend>
+                    {{ comment_form.as_p }}
+                    <button type="submit">Submit Comment</button>
+                </fieldset>
+            </form>
         {% empty %}
             <li>No reviews yet.</li>
         {% endfor %}
     </ul>
     
     
-    <a href="{% url 'leave_review' book.id %}">Leave a review</a>
+
 
 </body>
 </html>

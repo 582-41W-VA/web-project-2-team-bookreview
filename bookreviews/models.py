@@ -53,6 +53,28 @@ class Review(models.Model):
         return f"{self.user.username}'s review of {self.book_title}"
     
 
+
+class Commenting(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    review = models.ForeignKey(Review, on_delete=models.CASCADE)
+    comment_text = models.TextField()
+
+    def __str__(self):
+        return f"{self.user.username}'s comment on {self.review.book_title}"
+
+
+# class AddComment(models.Model):
+#     full_name = models.CharField(max_length=200)
+#     age = models.PositiveIntegerField()
+#     comment_text = models.TextField()
+#     article = models.ForeignKey(Article, on_delete=models.CASCADE)
+
+#     def __str__(self):
+#         return f"Comment by {self.full_name} on {self.article.article_title}"
+
+
+    
+
 class BookInfo(models.Model):
     book_id = models.CharField(max_length=100, unique=True)
     title = models.CharField(max_length=255)

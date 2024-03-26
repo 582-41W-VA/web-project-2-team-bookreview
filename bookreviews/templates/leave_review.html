@@ -8,14 +8,20 @@
 <html>
 <head>
     <title>Leave a Review</title>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'bookreviews/css/style.css' %}">
 </head>
 <body>
-    <h1>Leave a Review</h1>
+    <h1>Leave a Review for <a href=" {% url 'book_detail' book.id %} ">{{ book.title }}</a></h1>
     <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn" type="submit">Submit Review</button>
-        <button class="btn" ><a href="{% url 'book_detail' book.id %}">Cancel</a></button>
+        <fieldset class="review_form">
+            <legend>Review form</legend>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn" type="submit">Submit Review</button>
+            <button class="btn" ><a href="{% url 'book_detail' book.id %}">Cancel</a></button>
+        </fieldset>
     </form>
     
     
