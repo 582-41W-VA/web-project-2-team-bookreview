@@ -16,7 +16,8 @@
     <form method="post">
         {% csrf_token %}
         <button class="btn" type="submit" name="confirm_delete" value="yes">Yes, delete</button>
-        <button class="btn" ><a href="{% url 'book_detail' review.book.id %}">Cancel</a></button>
+        <!-- Use review.book_id instead of review.book.id -->
+        <button class="btn" ><a href="{% url 'book_detail' review.book_id %}">Cancel</a></button>
     </form>
 </body>
 </html>
