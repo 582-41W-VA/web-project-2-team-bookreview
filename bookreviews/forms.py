@@ -31,6 +31,10 @@ class CommentForm(forms.ModelForm):
         model = Commenting
         fields = ['comment_text']
         widgets = {
-            'comment_text': forms.Textarea(attrs={'cols': 60, 'rows': 2})  # Adjust the cols and rows as needed
-            
+            'comment_text': forms.Textarea(attrs={'cols': 60, 'rows': 2})  # Adjust the cols and rows as needed   
         }
+
+
+class SearchForm(forms.Form):
+    query = forms.CharField(label='Search', max_length=100)
+    fields = ['search']

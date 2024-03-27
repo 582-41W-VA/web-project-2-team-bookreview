@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %} Search Results {% endblock %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search results</title>
+</head>
+<body>
+
+
+
+    <h1>Search Books</h1>
+
+    <!-- <form method="get" action="{% url 'search_books' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form> -->
+    
+    {% if books %}
+        <h2>Search Results</h2>
+        <ul>
+            {% for book in books %}
+                <li>
+                    <strong>Title:</strong> {{ book.volumeInfo.title }}<br>
+                    <strong>Author(s):</strong> {{ book.volumeInfo.authors|join:", " }}<br>
+                    <strong>category:</strong> {{ book.volumeInfo.categories|join:", " }}<br> 
+                    <a href="{% url 'book_detail' book.id %}">book details</a>                   <!-- Add more book details as needed -->
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No books found.</p>
+    {% endif %}
+    
+
+    
+</body>
+</html>
+
+
+{% endblock %}

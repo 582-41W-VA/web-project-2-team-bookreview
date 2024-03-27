@@ -13,6 +13,7 @@ import requests
 from .models import BookInfo
 from .models import Commenting
 from .forms import CommentForm
+from .forms import SearchForm
 
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
@@ -324,9 +325,10 @@ def index(request):
     # else:
         google_book_api = "https://www.googleapis.com/books/v1/volumes"
         params = {
-            "q": "subject:science fiction|classic|crime and mystery",
+            "q": "subject:science fiction|classic|crime and mystery|fantasy|TRUE CRIME",
+            # "q": "subject: fiction",
             "maxResults": 40,
-            "fields": "items(id,volumeInfo/title,volumeInfo/authors,volumeInfo/imageLinks,volumeInfo/categories,volumeInfo/description)",
+            # "fields": "items(id,volumeInfo/title,volumeInfo/authors,volumeInfo/imageLinks,volumeInfo/categories,volumeInfo/description)",
         }
 
         response = requests.get(google_book_api, params=params).json()
@@ -441,3 +443,25 @@ def add_comment_to_review(request, review_id):
             comment.save()
             messages.success(request, 'Your comment has been added successfully.')
     return redirect('book_detail', book_id=review.book_id)
+
+
+
+def search_books(request):
+    form = SearchForm(request.GET)
+    books = []
+
+    if form.is_valid():
+        query = form.cleaned_data['query']
+        category = form.cleaned_data.get('category')  # Assuming you have a category field in your SearchForm
+
+        # Construct the API query URL with the search query and category filter
+        google_books_api = f"https://www.googleapis.com/books/v1/volumes?q={query}&maxResults=40"
+        if category:
+            google_books_api += f"&subject={category}"
+
+        response = requests.get(google_books_api).json()
+
+        if 'items' in response:
+            books = response['items']
+
+    return render(request, 'search_results.html', {'form': form, 'books': books})
