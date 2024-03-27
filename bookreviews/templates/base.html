@@ -12,7 +12,7 @@
 <body>
     <header>
         <h1>My Website</h1>
-        <a href="{% url 'index' %}">home</a>
+        <h2><a href="{% url 'index' %}">home</a></h2>
         {% if user.is_authenticated %}
             <p>Logged in as {{ user.username }} | <a href="{% url 'logout' %}">Logout</a></p>
             <p>Hello, {{ user.first_name  }} {{ user.last_name }}</p>
@@ -21,6 +21,27 @@
         {% else %}
         <p>Not logged in | <a href="{% url 'login' %}">Login</a> | <a href="{% url 'register' %}">Register</a></p>
         {% endif %}
+
+        <!-- <p><a href="{% url 'search_books' %}">Search</a></p> -->
+        
+
+        <form method="GET" action="{% url 'search_books' %}">
+            <label for="id_query">Search:</label>
+            <input type="text" id="id_query" name="query" maxlength="100">
+            
+            <!-- <label for="id_category">Category:</label>
+            <select id="id_category" name="category">
+                <option value="" disabled >Select Category</option>
+                <option value="science fiction">science fiction</option>
+                <option value="classic">classic</option>
+                <option value="crime and mystery">crime and mystery</option>
+                <option value="fantasy">fantasy</option>
+                
+            </select> -->
+            
+            <button type="submit">Search</button>
+        </form>
+
     </header>
 
 

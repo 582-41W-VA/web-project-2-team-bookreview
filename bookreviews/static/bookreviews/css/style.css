@@ -7,11 +7,14 @@
 
 body{
     background-image: url('../images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     padding: 15px;
 }
 
 li {
-    margin-bottom: 10px;
+    margin-top: 10px;
     font-size: 22px;
 }
 
@@ -24,7 +27,7 @@ p{
 }
 
 a{
-    font-size: 20px;
+    /* font-size: 20px; */
 }
 
 /* button a{
@@ -40,6 +43,7 @@ a{
 
 header{
     background-color: aquamarine;
+    width: 100%;
 }
 
 
@@ -80,4 +84,24 @@ header{
     width: 100px;
     height: 140px;
     margin: 20px 0;
+}
+
+
+.review_form label{
+    display: block;
+}
+
+.comment_form{
+    display: inline;
+    /* flex-direction: row; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* flex-wrap: nowrap; */
+    /* padding: 0; */
+    margin: 20px 0;
+}
+
+.comment_form label{
+    display: block;
+    font-size: 16px;
 }
