@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ book.title }}{% endblock %}
+{% block title %}Book Detail - {{ book.title }}{% endblock %}
 
 {% block content %}
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ book.title }}</title>
+    <title>Book Detail {{ book.title }}</title>
     {% load static %}
 
     <link rel="stylesheet" href="{% static 'bookreviews/css/style.css' %}">
@@ -25,7 +25,7 @@
     </P>
     <h2>Reviews:</h2>
     <ul>
-        {% for review in reviews %}
+        {% for review in reviews reversed %}
             <li>
                 <p>Reviewer: {{ review.user.username }}  </p>
                 <p>Review: {{ review.review_content }}  </p>

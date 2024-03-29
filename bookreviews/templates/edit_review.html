@@ -14,12 +14,15 @@
 </head>
 <body>
     <h1>Edit Review</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn" type="submit">Save Changes</button>
-        <button class="btn"><a href="{% url 'book_detail' book.id %}">Cancel</a></button>
-    </form>
+    <fieldset class="review_form">
+        <legend>Edit Review</legend>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn" type="submit">Save Changes</button>
+            <button class="btn"><a href="{% url 'book_detail' book.id %}">Cancel</a></button>
+        </form>
+    </fieldset>
 </body>
 </html>
 

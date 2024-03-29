@@ -31,7 +31,7 @@ class CommentForm(forms.ModelForm):
         model = Commenting
         fields = ['comment_text']
         widgets = {
-            'comment_text': forms.Textarea(attrs={'cols': 60, 'rows': 1})  # Adjust the cols and rows as needed   
+            'comment_text': forms.Textarea(attrs={'cols': 40, 'rows': 3})  # Adjust the cols and rows as needed   
         }
 
 
@@ -47,3 +47,9 @@ class UserEditForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(UserEditForm, self).__init__(*args, **kwargs)
+
+
+class CombinedSearchForm(forms.Form):
+    username = forms.CharField(label='Search for Username', max_length=100, required=False)
+    review_content = forms.CharField(label='Search Review Content', max_length=255, required=False)
+    comment_text = forms.CharField(label='Search Comment Text', max_length=255, required=False)

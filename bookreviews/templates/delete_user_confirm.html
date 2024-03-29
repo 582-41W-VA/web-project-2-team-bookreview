@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete user</title>
+    <title>Delete User by Admin </title>
 </head>
 <body>
     {% if perms.bookreviews.can_delete_users %}
@@ -19,7 +19,7 @@
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Yes, delete</button>
-        <button><a href="{% url 'list_users' %}">Cancel</a></button>
+        <button><a href="{% url 'admin_panel' %}">Cancel</a></button>
     </form>
     {% endif %}
     

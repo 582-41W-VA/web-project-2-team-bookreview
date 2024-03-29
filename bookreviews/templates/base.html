@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}My Website{% endblock %}</title>
@@ -9,47 +10,31 @@
 
     <link rel="stylesheet" href="{% static 'bookreviews/css/style.css' %}">
 </head>
+
 <body>
     <header>
         <h1>My Website</h1>
         <h2><a href="{% url 'index' %}">home</a></h2>
         {% if user.is_authenticated %}
-            <p>Logged in as {{ user.username }} | <a href="{% url 'logout' %}">Logout</a></p>
-            <p>Hello, {{ user.first_name  }} {{ user.last_name }}</p>
-            <p><a href="{% url 'my_reviews' %}">My Reviews</a></p>
-            {% if perms.bookreviews.can_view_users %}
-                <p><a href="{% url 'list_users' %}">list users</a></p>
-                <p><a href="{% url 'total_reviews' %}">total reviews</a></p>
-            {% endif %}
-            <!-- <p><a href="{% url 'list_users' %}">List of Users</a></p> -->
+        <p>Logged in as {{ user.username }} | <a href="{% url 'logout' %}">Logout</a></p>
+        <p>Hello, {{ user.first_name }} {{ user.last_name }}</p>
+        <p><a href="{% url 'my_reviews' %}">My Reviews</a></p>
 
-            
         {% else %}
         <p>Not logged in | <a href="{% url 'login' %}">Login</a> | <a href="{% url 'register' %}">Register</a></p>
         {% endif %}
 
-        <!-- <p><a href="{% url 'search_books' %}">Search</a></p> -->
-        
+        {% if user.is_authenticated and user.is_superuser and perms.bookreviews.can_access_admin_panel %}
+        <p><a href="{% url 'admin_panel' %}">Admin Panel</a></p>
+        {% endif %}
 
         <form method="GET" action="{% url 'search_books' %}">
-            <label for="id_query">Search:</label>
+            <label for="id_query">Search Books:</label>
             <input type="text" id="id_query" name="query" maxlength="100">
-            
-            <!-- <label for="id_category">Category:</label>
-            <select id="id_category" name="category">
-                <option value="" disabled >Select Category</option>
-                <option value="science fiction">science fiction</option>
-                <option value="classic">classic</option>
-                <option value="crime and mystery">crime and mystery</option>
-                <option value="fantasy">fantasy</option>
-                
-            </select> -->
-            
             <button type="submit">Search</button>
         </form>
 
     </header>
-
 
     {% for message in messages %}
     <div class="alert alert-{{ message.tags }}">
@@ -57,7 +42,7 @@
     </div>
     {% endfor %}
 
-    
+
     <main>
         {% block content %}
         {% endblock %}
@@ -68,4 +53,5 @@
     </footer>
 
 </body>
+
 </html>

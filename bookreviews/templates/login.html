@@ -7,15 +7,6 @@
 
 </head>
 <body>
-    <!-- <pre>{{ request | pprint }}</pre> -->
-    <!-- {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %} -->
-
 
     {% if messages %}
         {% for message in messages %}
@@ -25,7 +16,6 @@
         {% endfor %}
     {% endif %}
     
-
 
 
     <h2><a href="{% url 'index' %}">home</a></h2>

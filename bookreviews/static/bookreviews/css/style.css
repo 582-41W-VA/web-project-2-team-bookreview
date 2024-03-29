@@ -81,6 +81,7 @@ header{
     overflow: hidden;
 }
 
+
 .book_thumbnail{
     width: 100px;
     height: 140px;
@@ -113,6 +114,9 @@ header{
     font-size: 22px;
     color: red;
     border: 2px solid black
+   
+}
 
-    
+button{
+    margin: 10px;
 }
