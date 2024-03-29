@@ -5,19 +5,151 @@ from django.contrib.auth import login, logout
 from .models import Book, Review
 from .forms import ReviewForm
 from .forms import RegistrationForm
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
 from django.contrib import messages
 from django.urls import reverse
 from .models import Review
 import requests
 from .models import BookInfo
 from .models import Commenting
+from .models import CustomUser
+
 from .forms import CommentForm
 from .forms import SearchForm
+from .forms import UserEditForm
+
 
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
 from django.core.cache import cache
+
+
+@login_required
+@permission_required('bookreviews.can_edit_reviews')
+def edit_any_review(request, review_id):
+    review = get_object_or_404(Review, id=review_id)
+    if request.method == 'POST':
+        form = ReviewForm(request.POST, instance=review)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'The review has been edited successfully.')
+            return redirect('book_detail', book_id=review.book_id)  # Redirect to book detail page
+    else:
+        form = ReviewForm(instance=review)
+    # Pass the book data along with the form
+    book_data = {
+        "id": review.book_id,
+        "title": review.book_title,
+        "author": review.book_author,
+        "description": review.book_description,
+        "category": review.book_category,
+        "image": review.book_image,
+    }
+    return render(request, 'edit_review.html', {'form': form, 'book': book_data})
+
+
+@login_required
+@permission_required('bookreviews.can_delete_reviews')
+def delete_any_review(request, review_id):
+    review = get_object_or_404(Review, id=review_id)
+    if request.method == 'POST' and request.POST.get('delete_any_review') == 'yes':
+        book_id = review.book_id  # Store the book ID before deletion
+        review.delete()
+        messages.success(request, 'Your review has been deleted successfully.')
+        return redirect('book_detail', book_id=book_id)  # Redirect to book detail page after deletion
+    else:
+        # Pass the review to the template
+        return render(request, 'delete_any_review.html', {'review': review})
+
+
+
+@login_required
+@permission_required('bookreviews.can_delete_comments')
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Commenting, pk=comment_id)
+    book_id = comment.review.book_id
+    if request.method == 'POST':
+        comment.delete()
+        messages.success(request, 'The comment has been deleted successfully.')
+    return redirect('book_detail', book_id=book_id)
+
+
+
+
+
+
+
+# @permission_required('bookreviews.can_edit_reviews')
+# def edit_any_review(request, review_id):
+#     review = get_object_or_404(Review, id=review_id)
+#     if review.user == request.user:  # Check if the logged-in user owns the review
+#         if request.method == 'POST':
+#             form = ReviewForm(request.POST, instance=review)
+#             if form.is_valid():
+#                 form.save()
+#                 messages.success(request, 'Your review has been edited successfully.')
+#                 return redirect('book_detail', book_id=review.book_id)  # Redirect to book detail page
+#         else:
+#             form = ReviewForm(instance=review)
+#         # Pass the book data along with the form
+#         book_data = {
+#             "id": review.book_id,
+#             "title": review.book_title,
+#             "author": review.book_author,
+#             "description": review.book_description,
+#             "category": review.book_category,
+#             "image": review.book_image,
+#         }
+#         return render(request, 'edit_review.html', {'form': form, 'book': book_data})
+
+
+
+@permission_required('bookreviews.can_view_users')
+def list_users(request):
+    if not request.user.has_perm('bookreviews.can_view_users'):
+        pass    
+    users = CustomUser.objects.all()
+    total_users = CustomUser.objects.count()
+    return render(request, 'list_users.html', {'users': users,'total_users': total_users})
+
+
+@permission_required('bookreviews.can_edit_user')
+def edit_user(request, user_id):
+    if not request.user.has_perm('bookreviews.can_edit_user'):
+        pass
+    user = get_object_or_404(CustomUser, pk=user_id)
+    if request.method == 'POST':
+        form = UserEditForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('list_users')  # Redirect to the list of users after editing
+    else:
+        form = UserEditForm(instance=user)
+    return render(request, 'edit_user.html', {'form': form, 'user': user})
+
+
+@login_required
+@permission_required('bookreviews.can_delete_users')
+def delete_user(request, user_id):
+    if request.method == 'POST':
+        user = get_object_or_404(CustomUser, pk=user_id)
+        user.delete()
+        messages.success(request, 'User deleted successfully.')
+        return redirect('list_users')  # Redirect to the list of users after deleting
+    else:
+        user = get_object_or_404(CustomUser, pk=user_id)
+        return render(request, 'delete_user_confirm.html', {'user': user})
+
+
+
+
+@login_required
+@permission_required('bookreviews.can_view_all_reviews')
+def total_reviews(request):
+    total_reviews = Review.objects.count()
+    return render(request, 'total_reviews.html', {'total_reviews': total_reviews})
 
 
 
@@ -325,7 +457,7 @@ def index(request):
     # else:
         google_book_api = "https://www.googleapis.com/books/v1/volumes"
         params = {
-            "q": "subject:science fiction|classic|crime and mystery|fantasy|TRUE CRIME",
+            "q": "subject:science fiction|classic|crime and mystery|fantasy|true crime|Fiction",
             # "q": "subject: fiction",
             "maxResults": 40,
             # "fields": "items(id,volumeInfo/title,volumeInfo/authors,volumeInfo/imageLinks,volumeInfo/categories,volumeInfo/description)",

@@ -19,4 +19,15 @@ urlpatterns = [
     path('login/', views.user_login, name='login'),
     path('register/', views.register, name='register'),
     path('logout/', views.user_logout, name='logout'),
+
+    path('list_users/', views.list_users, name='list_users'),
+    path('edit_user/<str:user_id>/', views.edit_user, name='edit_user'),
+    path('delete_user/<str:user_id>/', views.delete_user, name='delete_user'),
+    
+    path('edit_any_review/<str:review_id>/', views.edit_any_review, name='edit_any_review'),
+    path('delete_any_review/<str:review_id>/', views.delete_any_review, name='delete_any_review'),
+    
+    path('delete_comment/<int:comment_id>/', views.delete_comment, name='delete_comment'),
+
+    path('total_reviews/', views.total_reviews, name='total_reviews'),
 ]

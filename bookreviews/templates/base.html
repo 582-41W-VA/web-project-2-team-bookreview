@@ -17,6 +17,12 @@
             <p>Logged in as {{ user.username }} | <a href="{% url 'logout' %}">Logout</a></p>
             <p>Hello, {{ user.first_name  }} {{ user.last_name }}</p>
             <p><a href="{% url 'my_reviews' %}">My Reviews</a></p>
+            {% if perms.bookreviews.can_view_users %}
+                <p><a href="{% url 'list_users' %}">list users</a></p>
+                <p><a href="{% url 'total_reviews' %}">total reviews</a></p>
+            {% endif %}
+            <!-- <p><a href="{% url 'list_users' %}">List of Users</a></p> -->
+
             
         {% else %}
         <p>Not logged in | <a href="{% url 'login' %}">Login</a> | <a href="{% url 'register' %}">Register</a></p>

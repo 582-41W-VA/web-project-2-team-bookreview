@@ -28,7 +28,9 @@
 
 
 
-    <a href="{% url 'index' %}">home</a>
+    <h2><a href="{% url 'index' %}">home</a></h2>
+    <h3>Don't have an account? <a href="{% url 'register' %}">Register</a></h3>
+    
     <h1>Login</h1>
     <form method="post">
         {% csrf_token %}
