@@ -156,7 +156,7 @@ def user_detail(request, user_id):
 
 
 @login_required
-@permission_required('bookreviews.can_search_users_in_admin_panel')
+@permission_required("bookreviews.can_search_users_in_admin_panel")
 def search_users_reviews(request):
     form = CombinedSearchForm(request.GET)
     users = []
@@ -164,9 +164,9 @@ def search_users_reviews(request):
     comments = []
 
     if form.is_valid():
-        username = form.cleaned_data.get('username')
-        review_content = form.cleaned_data.get('review_content')
-        comment_text = form.cleaned_data.get('comment_text')
+        username = form.cleaned_data.get("username")
+        review_content = form.cleaned_data.get("review_content")
+        comment_text = form.cleaned_data.get("comment_text")
 
         if username:
             # Filter users by username if provided
@@ -180,9 +180,11 @@ def search_users_reviews(request):
             # Filter comments by comment text if provided
             comments = Commenting.objects.filter(comment_text__icontains=comment_text)
 
-    return render(request, 'search_users_reviews.html', {'form': form, 'users': users, 'reviews': reviews, 'comments': comments})
-
-
+    return render(
+        request,
+        "search_users_reviews.html",
+        {"form": form, "users": users, "reviews": reviews, "comments": comments},
+    )
 
 
 def edit_review(request, review_id):
@@ -261,6 +263,7 @@ def register(request):
             return redirect(
                 "login"
             )  # Redirect to login page after successful registration
+
     else:
         form = RegistrationForm()
     return render(request, "register.html", {"form": form})

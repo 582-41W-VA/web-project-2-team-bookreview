@@ -23,7 +23,9 @@ class CheckAllPages(TestCase):
         )
         self.assertEqual(error_response.status_code, 404)
 
+    # testing for registering new user
     def test_register_user(self):
+        # response if register success
         response = self.client.post(
             reverse("register"),
             {
@@ -31,8 +33,22 @@ class CheckAllPages(TestCase):
                 "email": "testuser@email.com",
                 "firstname": "test",
                 "lastname": "user",
+                "password1": "Bintang1234",
+                "password2": "Bintang1234",
+            },
+        )
+        # if success it will return 302 because it will redirect to login page
+        self.assertEqual(response.status_code, 302)
+
+        # response if register failed because of missing field
+        error_response = self.client.post(
+            reverse("register"),
+            {
+                "email": "testuser@email.com",
+                "firstname": "test",
+                "lastname": "user",
                 "password": "1234",
             },
         )
-
-        self.assertEqual(response.status_code, 200)
+        # it return 200 because will rerender register page again
+        self.assertEqual(error_response.status_code, 200)
