@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} Book List {% endblock %}
+{% block title %} Index page {% endblock %}
 
 {% block content %}
 
@@ -8,20 +8,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Book List</title>
-    <!-- {% load static %} -->
+    <title>Home Page</title>
+    {% load static %}
 
-    <!-- <link rel="stylesheet" href="{% static 'style.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
     
 </head>
 <body>
-    <!-- <h1>Book List</h1>
-    <ul>
-        {% for book in books %}
-            <li><a href="{% url 'book_detail' book.id %}">{{ book.title }}</a> by {{ book.author }}</li>
-        {% endfor %}
-    </ul> -->
-
     
     <h1>Books</h1>
     <ul>

@@ -7,15 +7,6 @@
 
 </head>
 <body>
-    <!-- <pre>{{ request | pprint }}</pre> -->
-    <!-- {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %} -->
-
 
     {% if messages %}
         {% for message in messages %}
@@ -27,8 +18,9 @@
     
 
 
-
-    <a href="{% url 'index' %}">home</a>
+    <h2><a href="{% url 'index' %}">home</a></h2>
+    <h3>Don't have an account? <a href="{% url 'register' %}">Register</a></h3>
+    
     <h1>Login</h1>
     <form method="post">
         {% csrf_token %}

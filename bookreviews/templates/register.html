@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="{% static 'bookreviews/css/style.css' %}">
 </head>
 <body>
-    <a href="{% url 'index' %}">home</a>
+    <h2><a href="{% url 'index' %}">home</a></h2>
+    <h3>Already have an account? <a href="{% url 'login' %}">Login</a></h3>
     <h2>Register</h2>
     <form method="post" class="register_form">
         {% csrf_token %}

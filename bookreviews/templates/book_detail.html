@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ book.title }}{% endblock %}
+{% block title %}Book Detail - {{ book.title }}{% endblock %}
 
 {% block content %}
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ book.title }}</title>
+    <title>Book Detail {{ book.title }}</title>
     {% load static %}
 
     <link rel="stylesheet" href="{% static 'bookreviews/css/style.css' %}">
@@ -25,12 +25,22 @@
     </P>
     <h2>Reviews:</h2>
     <ul>
-        {% for review in reviews %}
+        {% for review in reviews reversed %}
             <li>
-                Reviewer: {{ review.user.username }} | Review: {{ review.comment }} | Rating: ({{ review.rating }}/5)
+                <p>Reviewer: {{ review.user.username }}  </p>
+                <p>Review: {{ review.review_content }}  </p>
+                <p>Rating: ({{ review.rating }}/5)  </p>
+                <p>Date reviewed: {{ review.review_date }}</p>
                 {% if review.user == request.user %}
                     <a href="{% url 'edit_review' review.id %}">Edit Review</a>
                     <a href="{% url 'delete_review' review.id %}">Delete Review</a>
+                {% endif %}
+                
+                {% if perms.bookreviews.can_edit_reviews %}
+                    <a id="admin-edit-review" href=" {% url 'edit_any_review' review.id %} ">Admin: Edit This Review</a>
+                {% endif %}
+                {% if perms.bookreviews.can_delete_reviews %}
+                    <a id="admin-delete-review" href=" {% url 'delete_any_review' review.id %} ">Admin: Delete This Review</a>
                 {% endif %}
             </li>
             <!-- Display comments on this review -->
@@ -38,19 +48,33 @@
                 <h2>Comments on this review:</h2>
                 {% for comment in review.commenting_set.all %}
                     <p>- User {{ comment.user.username }}'s comment: {{ comment.comment_text }}</p>
+                
+                    {% if perms.bookreviews.can_delete_comments %}
+                    <form action="{% url 'delete_comment' comment.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Delete Comment</button>
+                    </form>
+                    {% endif %}
+
+
                 {% empty %}
                     <p>No comments yet.</p>
                 {% endfor %}
             
             <!-- Comment form for adding a comment to the review -->
-            <form method="post" action="{% url 'add_comment_to_review' review.id %}">
-                {% csrf_token %}
-                <fieldset class="comment_form">
-                    <legend>Add a comment to this review:</legend>
-                    {{ comment_form.as_p }}
-                    <button type="submit">Submit Comment</button>
-                </fieldset>
-            </form>
+            <details style="padding: 20px; color: #4968db; font-size: 22px;"> 
+                <summary>Add a comment</summary>
+                <div>
+                    <form method="post" action="{% url 'add_comment_to_review' review.id %}">
+                        {% csrf_token %}
+                        <fieldset class="comment_form">
+                            <legend>Add a comment to this review:</legend>
+                            {{ comment_form.as_p }}
+                            <button type="submit">Submit Comment</button>
+                        </fieldset>
+                    </form>
+                </div>
+            </details>
         {% empty %}
             <li>No reviews yet.</li>
         {% endfor %}

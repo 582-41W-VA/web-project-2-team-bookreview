@@ -22,7 +22,7 @@
         <li>
             Review for: <a href="{% url 'book_detail' item.review.book_id %}">{{ item.book.title }}</a>
             | Rating: {{ item.review.rating }}/5
-            | Review content: {{ item.review.comment }}
+            | Review content: {{ item.review.review_content }}
         </li>
         {% empty %}
         <li>No reviews found.</li>

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit User by Admin {% endblock %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User</title>
+</head>
+
+<body>
+    {% if perms.bookreviews.can_edit_users %}
+    <h1>Edit User</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Changes</button>
+        <button><a href="{% url 'admin_panel' %}">Cancel</a></button>
+    </form>
+    {% endif %}
+
+</body>
+
+</html>
+
+
+{% endblock %}
