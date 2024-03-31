@@ -15,7 +15,7 @@
 
 <body>
     {% if perms.bookreviews.can_edit_users %}
-    <h1>Edit User</h1>
+    <h1>Edit User by Admin</h1>
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}

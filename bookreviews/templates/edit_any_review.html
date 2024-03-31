@@ -14,7 +14,7 @@
 </head>
 <body>
     {% if perms.bookreviews.can_edit_reviews %}
-    <h1>Edit Review</h1>
+    <h1>Edit Review by Admin</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}

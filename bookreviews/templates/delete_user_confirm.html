@@ -13,7 +13,7 @@
 </head>
 <body>
     {% if perms.bookreviews.can_delete_users %}
-    <h1>Confirm Deleting a User</h1>
+    <h1>Confirm Deleting a User by Admin</h1>
     <p>Are you sure you want to delete the user {{ user.username }}?</p>
     <form method="POST">
         {% csrf_token %}
