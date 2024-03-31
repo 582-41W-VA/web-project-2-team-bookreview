@@ -23,6 +23,9 @@
             Review for: <a href="{% url 'book_detail' item.review.book_id %}">{{ item.book.title }}</a>
             | Rating: {{ item.review.rating }}/5
             | Review content: {{ item.review.review_content }}
+            | Review date: {{ item.review.review_date }}
+            <a href="{% url 'edit_review' item.review.id %}">edit review</a>
+            <a href="{% url 'delete_review' item.review.id %}">delete review</a>
         </li>
         {% empty %}
         <li>No reviews found.</li>

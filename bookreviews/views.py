@@ -52,7 +52,7 @@ def edit_any_review(request, review_id):
         "category": review.book_category,
         "image": review.book_image,
     }
-    return render(request, "edit_review.html", {"form": form, "book": book_data})
+    return render(request, "edit_any_review.html", {"form": form, "book": book_data})
 
 
 @login_required
@@ -176,12 +176,21 @@ def search_users_reviews(request):
             # Filter reviews by review content if provided
             reviews = Review.objects.filter(review_content__icontains=review_content)
 
+            # Add book title for each review
+            for review in reviews:
+                # Fetch book title from BookInfo model
+                try:
+                    book_title = BookInfo.objects.get(book_id=review.book_id).book_title
+                    review.book_title = book_title
+                except BookInfo.DoesNotExist:
+                    # Handle case where book info is not available
+                    review.book_title = "Book Title Not Available"
+
         if comment_text:
             # Filter comments by comment text if provided
             comments = Commenting.objects.filter(comment_text__icontains=comment_text)
 
     return render(request, 'search_users_reviews.html', {'form': form, 'users': users, 'reviews': reviews, 'comments': comments})
-
 
 
 
@@ -381,20 +390,11 @@ def book_detail(request, book_id):
     }
 
     comment_form = CommentForm()
-    return render(
-        request,
-        "book_detail.html",
-        {
-            "book": book_data,
-            "reviews": book_data["reviews"],
-            "comment_form": comment_form,
-        },
-    )
+    return render(request, "book_detail.html", {"book": book_data, "reviews": book_data["reviews"], 'comment_form': comment_form })
 
 
 # @login_required
 def leave_review(request, book_id):
-
     google_book_api = "https://www.googleapis.com/books/v1/volumes/{}".format(book_id)
     response = requests.get(google_book_api).json()
 
@@ -415,40 +415,40 @@ def leave_review(request, book_id):
 
     # Save book information in the BookInfo model
     book_info, created = BookInfo.objects.get_or_create(book_id=book_data["id"])
-    book_info.title = book_data["title"]
+    book_info.book_title = book_data["title"]  # Update book title
     book_info.save()
 
     if not request.user.is_authenticated:
         login_url = reverse("login")
         login_link = f'<a class="login-link" href="{login_url}">Log in</a>'
-        register_link = (
-            f'<a class="register-link" href="{reverse("register")}">Register</a>'
-        )
+        register_link = f'<a class="register-link" href="{reverse("register")}">Register</a>'
         messages.info(
             request,
             f"You need to log in to leave a review. Please {login_link} or {register_link}.",
         )
         return redirect("login")
-    # Check if the request method is POST
+
     if request.method == "POST":
         form = ReviewForm(request.POST)
         if form.is_valid():
             review = form.save(commit=False)
             review.book_id = book_data["id"]
+            review.book_title = book_data["title"]  # Associate book title with review
             review.user = request.user
             review.save()
             messages.success(request, "Your review has been submitted successfully.")
-            return redirect(
-                "book_detail", book_id=book_id
-            )  # Redirect to the book detail page
+            return redirect("book_detail", book_id=book_id)
     else:
         form = ReviewForm()
 
-    # If the user is not authenticated, display a warning message
     if not request.user.is_authenticated:
         messages.info(request, "You need to log in to leave a review.")
 
     return render(request, "leave_review.html", {"form": form, "book": book_data})
+
+
+
+
 
 
 @login_required

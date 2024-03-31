@@ -39,12 +39,17 @@
     {% if reviews %}
         <h2>Reviews Search Results</h2>
         <ul>
-            {% for review in reviews %}
+            {% for review in reviews reversed%}
             
-                <li>{{ review.review_content }} </li>
-                <a href="{% url 'edit_any_review' review_id=review.id %}">Edit Review</a>
-                <a href="{% url 'delete_any_review' review_id=review.id %}">Delete Review</a>
+                <li>
+                    {{ review.user.username }}'s review of  <a href="{% url 'book_detail' review.book_id %}">{{ review.book_title }}</a>  
+                    <p>{{ review.review_content }} </p>
+                    <p>Published on {{ review.review_date }}</p>
+                 
+                    <a href="{% url 'edit_any_review' review_id=review.id %}">Edit Review</a>
+                    <a href="{% url 'delete_any_review' review_id=review.id %}">Delete Review</a>
                 <!-- You can display additional review information here -->
+                </li><br><br>
             {% endfor %}
         </ul>
     {% else %}
@@ -55,12 +60,13 @@
         <h2>Comments Search Results</h2>
         <ul>
             {% if perms.bookreviews.can_delete_comments %}
-            {% for comment in comments %}
-                <li>user {{ comment.user.username }}'s comment: {{ comment.comment_text }}</li>
+            {% for comment in comments reversed%}
+                <li>User {{ comment.user.username }}'s comment: {{ comment.comment_text }}</li>
                 <p>
                     <form action=" {% url 'delete_comment' comment.id %}"method="POST">
                     {% csrf_token %}
-                    <input type="submit" value="delete comment ">
+                    <!-- <input type="submit" value="delete comment "> -->
+                    <button type="submit" value="delete comment ">Delete Comment</button>
                     </form>
                 </p>
                 <!-- You can display additional comment information here -->

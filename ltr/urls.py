@@ -18,8 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 from bookreviews import views
-from django.conf import settings #development
-from django.conf.urls.static import static #development 
+# from django.conf import settings #development
+# from django.conf.urls.static import static #development 
 
 urlpatterns = [
     path("admin/", admin.site.urls),

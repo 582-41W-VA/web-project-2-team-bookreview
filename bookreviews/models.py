@@ -70,7 +70,7 @@ class Review(models.Model):
 class Commenting(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     review = models.ForeignKey(Review, on_delete=models.CASCADE)
-    comment_text = models.TextField()
+    comment_text = models.TextField( max_length=100)
 
     def __str__(self):
         return f"{self.user.username}'s comment on {BookInfo.objects.get(book_id=self.review.book_id).book_title}"
