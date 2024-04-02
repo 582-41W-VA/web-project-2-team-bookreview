@@ -2,158 +2,277 @@
 /*This is globals. I will add your form here as well.  */
 /* Resetting default margin and padding for all elements */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   
-  /* Global styles */
-  body {
-    background-color: #1d2426;
-    color:#3e3e3e;
-    font-family: "Roboto Serif", serif;
-    line-height: 1.8;
-    font-size: 1rem;
-  }
-  
-  
-  /* Set the width of the scrollbar */
-  html {
-    scrollbar-width: thick;
-    scrollbar-color:  #0C7BDC;
-    scroll-behavior: smooth;
-    
-  }
-  
-  /* For WebKit/Blink browsers (Chrome, Safari) */
-  ::-webkit-scrollbar {
-    width: 15px; 
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background-color:#0C7BDC; 
-  }
-  
-  /* Fonts and Typography */
-  h1 {
-    font-size: clamp(1.3rem, 5vw, 2rem);
-    font-weight: 600;
-    line-height: 2.00;
-    text-transform: uppercase;
-    text-align: center;
-    color: #FAFAFA;
-    font-family: "Oswald", sans-serif;
-  }
-  
-  h2 { 
-    font-size: clamp(1.1rem, 5vw, 1.5rem);
-    text-transform: capitalize;
-    font-family: "Oswald", sans-serif;
-    font-weight: 500;
-  }
-  
-  h3 {
-    font-family: "Oswald", sans-serif;
-    font-size: clamp(1rem, 5vw, 1.4rem);
-    text-transform: capitalize;
-    letter-spacing: 0.04em;
-    font-weight: 500;
-  }
-  
-  h4 {
-    font-family: "Oswald", sans-serif;
-    font-size: clamp(1rem, 5vw, 1.3rem);
-    letter-spacing: 0.04em;
-    text-transform: capitalize;
-    font-weight: 500;
-  }
-  
-  h5 {
-    font-size: clamp(1rem, 5vw, 1.1rem);
-    letter-spacing: 0.04em;
-    text-transform: capitalize;
-    font-weight: 500;
-  }
-  
-  h6 {
-    font-size: 1rem;
-    letter-spacing: 0.04em;
-    text-transform: capitalize;
-  }
-  
-  p {
-    font-size: clamp(1rem, 5vw, 1.2rem);
-    letter-spacing: 0.04em;
-    font-weight: 400;
-  }
-  /* Links & Buttons */
-  a {
-    text-decoration: none;
-  }
+}
 
-  ul li {
-    list-style-type: none;
-  }
-  
-  .primary-link {
-    display: inline-block;
-    color: #FAFAFA;
-    font-family: "Oswald", sans-serif;
-    font-size: clamp(1rem, 5vw, 1.4rem);
-    letter-spacing: 0.04em;
-    text-transform: capitalize;
-    font-weight: 500;
-    text-decoration: none;
-    padding: 1rem 1rem;
-    border-bottom: #FAFAFA 5px solid;
-    margin: 1rem 1rem;
-    transition: all 0.5s ease;
-  }
-  
-  .primary-link:hover {
-    background-color: #FAFAFA;
-    color: #1d2426;
-    border-bottom: #0C7BDC 5px solid;
-  }
-  
-  /* forms ---- YOU CAN IGNORE THIS INPUT PART-- INSTEAD REPLACE IT WITH YOURS  */
-  input {
-    padding: 0.5rem 0.5rem;
-    font-size: clamp(1rem, 5vw, 1.2rem);
-    letter-spacing: 0.04em;
-    font-weight: 400;
-    margin: 1rem auto;
-  }
-  
-  /* main styles */
-  .container {
-    max-width: 1200px;
-    width: 95%;
-    margin: 0 auto;
-  }
-  
-  article {
-    padding: 1rem 1rem;
-    margin: 1rem auto;
-  }
-  
-  /* page title */
-  
-  .page-title-article {
-    padding-top: 2rem;
-  }
-  .page-title  {
-    display: inline-block;
-    padding: 1rem 2rem;
-    text-align: center;
-    border: 2px solid white;
-    background-color: #1d2426;
-  }
-  
-  .page-title img {
-    height: clamp(1.5rem, 10vw, 2rem); 
-    width: auto;
-  }
-  
+/* Global styles */
+body {
+background-color: #1d2426;
+color:#3e3e3e;
+font-family: "Roboto Serif", serif;
+line-height: 1.8;
+font-size: 1rem;
+}
 
-  
+
+/* Set the width of the scrollbar */
+html {
+scrollbar-width: thick;
+scrollbar-color:  #0C7BDC;
+scroll-behavior: smooth;
+
+}
+
+/* For WebKit/Blink browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+width: 15px; 
+}
+
+::-webkit-scrollbar-thumb {
+background-color:#0C7BDC; 
+}
+
+/* Fonts and Typography */
+h1 {
+font-size: clamp(1.3rem, 5vw, 2rem);
+font-weight: 600;
+line-height: 2.00;
+text-transform: uppercase;
+text-align: center;
+color: #FAFAFA;
+font-family: "Oswald", sans-serif;
+}
+
+h2 { 
+font-size: clamp(1.1rem, 5vw, 1.5rem);
+text-transform: capitalize;
+font-family: "Oswald", sans-serif;
+font-weight: 500;
+}
+
+h3 {
+font-family: "Oswald", sans-serif;
+font-size: clamp(1rem, 5vw, 1.4rem);
+text-transform: capitalize;
+letter-spacing: 0.04em;
+font-weight: 500;
+}
+
+h4 {
+font-family: "Oswald", sans-serif;
+font-size: clamp(1rem, 5vw, 1.3rem);
+letter-spacing: 0.04em;
+text-transform: capitalize;
+font-weight: 500;
+}
+
+h5 {
+font-size: clamp(1rem, 5vw, 1.1rem);
+letter-spacing: 0.04em;
+text-transform: capitalize;
+font-weight: 500;
+}
+
+h6 {
+font-size: 1rem;
+letter-spacing: 0.04em;
+text-transform: capitalize;
+font-weight: 300;
+}
+
+p {
+font-size: clamp(1rem, 5vw, 1.2rem);
+letter-spacing: 0.04em;
+font-weight: 400;
+}
+
+/* Links & Buttons */
+a {
+text-decoration: none;
+}
+
+ul li {
+list-style-type: none;
+}
+
+.primary-button{
+display: inline-block;
+color: #FAFAFA;
+font-family: "Oswald", sans-serif;
+font-size: clamp(1rem, 5vw, 1.4rem);
+letter-spacing: 0.04em;
+text-transform: capitalize;
+font-weight: 500;
+text-decoration: none;
+padding: 1rem 1rem;
+border-bottom: #FAFAFA 5px solid;
+margin: 1rem 1rem;
+transition: all 0.5s ease;
+background-color: #1d2426;
+}
+
+.primary-button:hover {
+background-color: #FAFAFA;
+color: #1d2426;
+border-bottom: #0C7BDC 5px solid;
+}
+
+.primary-link {
+display: inline-block;
+color: #FAFAFA;
+font-family: "Oswald", sans-serif;
+font-size: clamp(1rem, 5vw, 1.4rem);
+letter-spacing: 0.04em;
+text-transform: capitalize;
+font-weight: 500;
+text-decoration: none;
+padding: 1rem 1rem;
+border-bottom: #FAFAFA 5px solid;
+margin: 1rem 1rem;
+transition: all 0.5s ease;
+}
+
+.primary-link:hover {
+background-color: #FAFAFA;
+color: #1d2426;
+border-bottom: #0C7BDC 5px solid;
+}
+
+.secondary-link {
+color: #FAFAFA;
+padding: 0.5rem 0.5rem;
+}
+
+.secondary-link a:hover{
+border-bottom: #FAFAFA 5px solid;
+}
+
+.secondary-link-dark {
+color: #1d2426;
+font-size: 1.2rem;
+font-weight: 500;
+padding: 0.5rem 0.5rem;
+border-bottom: #1d2426 5px solid;
+border-left: transparent 3px solid;
+border-right: transparent 1px solid;
+transition: all 0.5s ease;
+}
+
+.secondary-link-dark:hover {
+border-bottom: #0C7BDC 5px solid;
+border-left: #0C7BDC 3px solid;
+border-right: #0C7BDC 1px solid;
+}
+
+.button-holder {
+margin: 1rem 0;
+display: flex;
+gap: 1rem;
+}
+
+
+
+/* main styles */
+.container {
+max-width: 1200px;
+width: 95%;
+margin: 0 auto;
+}
+
+article {
+padding: 1rem 1rem;
+margin: 1rem auto;
+}
+
+
+.right-item-holder {
+display: flex;
+justify-content:flex-end;
+gap: 2rem;
+}
+
+.left-item-holder {
+display: flex;
+justify-content:flex-start;
+}
+
+/* logo */
+.logo a img {
+border-bottom: 5px transparent solid;
+}
+
+.logo a img:hover {
+border-bottom: #FAFAFA 5px solid;
+}
+/* page title */
+.page-title-article {
+padding-top: 2rem;
+}
+.page-title  {
+display: inline-block;
+padding: 1rem 2rem;
+text-align: center;
+border: 2px solid white;
+background-color: #1d2426;
+}
+
+.page-title img {
+height: clamp(1.5rem, 10vw, 2.5rem); 
+width: auto;
+margin-left: 1rem;
+}
+
+/* form */
+form {
+  padding: 1rem 1rem;
+  margin: 1rem 1rem;
+  font-size: clamp(1rem, 5vw, 1.2rem);
+  letter-spacing: 0.04em;
+  font-weight: 400;
+}
+
+fieldset {
+  padding: 1rem 1rem;
+  border: #FAFAFA 2px solid;
+}
+
+legend {
+  font-size: clamp(1.1rem, 5vw, 1.5rem);
+  text-transform: capitalize;
+  font-family: "Oswald", sans-serif;
+  font-weight: 500;
+  color: #FAFAFA;
+  padding:1rem 1rem;
+  border: #FAFAFA 2px solid;
+}
+
+label {
+  font-weight: 500;
+}
+
+input {
+  background-color: #FAFAFA;
+  color: #1d2426;
+  font-size: clamp(1rem, 5vw, 1.2rem);
+  letter-spacing: 0.04em;
+  font-weight: 400;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.block-form {
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
