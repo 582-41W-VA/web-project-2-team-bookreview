@@ -1,28 +1,27 @@
+import requests
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseForbidden, HttpResponseNotFound
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, logout
-from .models import Review
-from .forms import ReviewForm
-from .forms import RegistrationForm
-from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.decorators import permission_required
-from django.contrib import messages
-from django.urls import reverse
-import requests
+from django.contrib.auth import get_user_model, login, logout
 
 # from .models import Book
 from .models import BookInfo
 from .models import Commenting
 from .models import CustomUser
+from .models import Review
 
+from .forms import ReviewForm
+from .forms import RegistrationForm
 from .forms import CommentForm
 from .forms import SearchForm
 from .forms import UserEditForm
-from django.contrib.auth import get_user_model
 from .forms import CombinedSearchForm
 
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required, permission_required
+
+from django.contrib import messages
+from django.urls import reverse
 
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
@@ -40,10 +39,10 @@ def edit_any_review(request, review_id):
             messages.success(request, "The review has been edited successfully.")
             return redirect(
                 "book_detail", book_id=review.book_id
-            )  # Redirect to book detail page
+            ) 
     else:
         form = ReviewForm(instance=review)
-    # Pass the book data along with the form
+    
     book_data = {
         "id": review.book_id,
         "title": review.book_title,
@@ -60,14 +59,14 @@ def edit_any_review(request, review_id):
 def delete_any_review(request, review_id):
     review = get_object_or_404(Review, id=review_id)
     if request.method == "POST" and request.POST.get("delete_any_review") == "yes":
-        book_id = review.book_id  # Store the book ID before deletion
+        book_id = review.book_id  
         review.delete()
         messages.success(request, "Your review has been deleted successfully.")
         return redirect(
             "book_detail", book_id=book_id
-        )  # Redirect to book detail page after deletion
+        )  
     else:
-        # Pass the review to the template
+        
         return render(request, "delete_any_review.html", {"review": review})
 
 
@@ -96,10 +95,10 @@ def list_users(request):
 @permission_required("bookreviews.can_edit_user")
 def edit_user(request, user_id):
     if not request.user.has_perm("bookreviews.can_edit_user"):
-        pass  # You might want to handle permission denial here
+        pass  
 
-    admin = request.user  # Assuming the current user is the admin
-    user = get_object_or_404(CustomUser, pk=user_id)  # Fetch the user being edited
+    admin = request.user  
+    user = get_object_or_404(CustomUser, pk=user_id)  
     if request.method == "POST":
         form = UserEditForm(request.POST, instance=user)
         if form.is_valid():
@@ -107,9 +106,9 @@ def edit_user(request, user_id):
             messages.success(request, "User edited successfully.")
             return redirect(
                 "user_detail", user_id=user_id
-            )  # Redirect to user detail page after editing
+            )  
     else:
-        form = UserEditForm(instance=user)  # Prepopulate form with user data
+        form = UserEditForm(instance=user)
 
     return render(
         request, "edit_user.html", {"form": form, "user": user, "admin": admin}
@@ -123,7 +122,7 @@ def delete_user(request, user_id):
         user = get_object_or_404(CustomUser, pk=user_id)
         user.delete()
         messages.success(request, "User deleted successfully.")
-        return redirect("admin_panel")  # Redirect to the list of users after deleting
+        return redirect("admin_panel")  
     else:
         user = get_object_or_404(CustomUser, pk=user_id)
         return render(request, "delete_user_confirm.html", {"user": user})
@@ -169,25 +168,19 @@ def search_users_reviews(request):
         comment_text = form.cleaned_data.get('comment_text')
 
         if username:
-            # Filter users by username if provided
             users = CustomUser.objects.filter(username__icontains=username)
 
         if review_content:
-            # Filter reviews by review content if provided
             reviews = Review.objects.filter(review_content__icontains=review_content)
 
-            # Add book title for each review
             for review in reviews:
-                # Fetch book title from BookInfo model
                 try:
                     book_title = BookInfo.objects.get(book_id=review.book_id).book_title
                     review.book_title = book_title
                 except BookInfo.DoesNotExist:
-                    # Handle case where book info is not available
                     review.book_title = "Book Title Not Available"
 
         if comment_text:
-            # Filter comments by comment text if provided
             comments = Commenting.objects.filter(comment_text__icontains=comment_text)
 
     return render(request, 'search_users_reviews.html', {'form': form, 'users': users, 'reviews': reviews, 'comments': comments})
@@ -196,7 +189,7 @@ def search_users_reviews(request):
 
 def edit_review(request, review_id):
     review = get_object_or_404(Review, id=review_id)
-    if review.user == request.user:  # Check if the logged-in user owns the review
+    if review.user == request.user: 
         if request.method == "POST":
             form = ReviewForm(request.POST, instance=review)
             if form.is_valid():
@@ -204,10 +197,9 @@ def edit_review(request, review_id):
                 messages.success(request, "Your review has been edited successfully.")
                 return redirect(
                     "book_detail", book_id=review.book_id
-                )  # Redirect to book detail page
+                )  
         else:
             form = ReviewForm(instance=review)
-        # Pass the book data along with the form
         book_data = {
             "id": review.book_id,
             "title": review.book_title,
@@ -223,16 +215,16 @@ def edit_review(request, review_id):
 
 def delete_review(request, review_id):
     review = get_object_or_404(Review, id=review_id)
-    if review.user == request.user:  # Check if the logged-in user owns the review
+    if review.user == request.user: 
         if request.method == "POST" and request.POST.get("confirm_delete"):
-            book_id = review.book_id  # Store the book ID before deletion
+            book_id = review.book_id  
             review.delete()
             messages.success(request, "Your review has been deleted successfully.")
             return redirect(
                 "book_detail", book_id=book_id
-            )  # Redirect to book detail page after deletion
+            )  
         else:
-            # Pass the review to the template
+            
             return render(request, "confirm_delete_review.html", {"review": review})
     else:
         return HttpResponseForbidden("You are not authorized to delete this review.")
@@ -259,17 +251,12 @@ def register(request):
     if request.method == "POST":
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            # Create a new CustomUser instance
             user = form.save(commit=False)
-            # Set the password for the user
-
             #   user.set_password(form.cleaned_data['password'])
-
-            # Save the user object with the hashed password
             user.save()
             return redirect(
                 "login"
-            )  # Redirect to login page after successful registration
+            ) 
     else:
         form = RegistrationForm()
     return render(request, "register.html", {"form": form})
@@ -280,16 +267,14 @@ def my_reviews(request):
     user_reviews = Review.objects.filter(user=request.user)
     reviews_with_books = []
 
-    # Iterate over each review to fetch the corresponding book data
     for review in user_reviews:
-        # Define a unique cache key for each book using its ID
+
         cache_key = f"book_data_{review.book_id}"
 
-        # Check if the book data is already cached
         book_data = cache.get(cache_key)
 
         if not book_data:
-            # Fetch book data from the API if not found in the cache
+
             google_book_api = (
                 f"https://www.googleapis.com/books/v1/volumes/{review.book_id}"
             )
@@ -308,15 +293,13 @@ def my_reviews(request):
                     ),
                 }
 
-                # Cache the fetched book data with the specified cache key
                 cache.set(
                     cache_key, book_data, timeout=3600
-                )  # Cache for 1 hour (adjust timeout as needed)
+                )  
             else:
-                # Handle case where book data retrieval failed
+
                 book_data = None
 
-        # Append the review along with the book data to the list
         reviews_with_books.append({"review": review, "book": book_data})
 
     return render(
@@ -434,6 +417,7 @@ def leave_review(request, book_id):
             review = form.save(commit=False)
             review.book_id = book_data["id"]
             review.book_title = book_data["title"]  # Associate book title with review
+            review.book_author = book_data["author"]
             review.user = request.user
             review.save()
             messages.success(request, "Your review has been submitted successfully.")
@@ -453,14 +437,14 @@ def leave_review(request, book_id):
 
 @login_required
 def add_comment_to_review(request, review_id):
-    review = get_object_or_404(Review, pk=review_id)  # Retrieve the review object
+    review = get_object_or_404(Review, pk=review_id) 
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
             comment.user = request.user
             comment.review = (
-                review  # Associate the comment with the retrieved review object
+                review  
             )
             comment.save()
             messages.success(request, "Your comment has been added successfully.")
@@ -475,9 +459,8 @@ def search_books(request):
         query = form.cleaned_data["query"]
         category = form.cleaned_data.get(
             "category"
-        )  # Assuming you have a category field in your SearchForm
+        )  
 
-        # Construct the API query URL with the search query and category filter
         google_books_api = (
             f"https://www.googleapis.com/books/v1/volumes?q={query}&maxResults=40"
         )
