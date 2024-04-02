@@ -326,7 +326,7 @@ def index(request):
     params = {
         "q": "subject:science fiction|classic|crime and mystery|fantasy|true crime|Fiction",
         # "q": "subject: fiction",
-        "maxResults": 40,
+        "maxResults": 4,
         # "fields": "items(id,volumeInfo/title,volumeInfo/authors,volumeInfo/imageLinks,volumeInfo/categories,volumeInfo/description)",
     }
 
