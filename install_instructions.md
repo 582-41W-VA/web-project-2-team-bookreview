@@ -1,5 +1,10 @@
+### This README file details the project's architecture, and how to install and run it locally.
 
-To install this project:
+Project backend is built using Django framework.  Project name is LTR and it has one app installed named "bookreviews".
+Frontend will be rendered using HTML templates styled with CSS and some jquery.
+Book data is provided by a third party API - Google books api, in this case.
+
+To install this project locally:
 1. Clone this repository
 2. Create a virtual environment with this command: `python -m venv .venv` or use `python3 -m venv .venv` depending on your python installation.
 3. Activate the virtual environment with command: `source .venv/bin/activate` (if you're on Mac) or `source .venv/scripts/activate` (if you're on Windows)
