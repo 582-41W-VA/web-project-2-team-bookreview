@@ -48,9 +48,7 @@ class CustomUser(AbstractUser):
 class Review(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     # Book information fetched from external API
-    book_id = models.CharField(
-        max_length=100
-    )  # Unique identifier from the external API
+    book_id = models.CharField(max_length=100)  # Unique identifier from the external API
     book_title = models.CharField(max_length=255)
     book_author = models.CharField(max_length=255)
     book_description = models.TextField()
@@ -64,7 +62,7 @@ class Review(models.Model):
     review_content = models.TextField()
 
     def __str__(self):
-        return f"{self.user.username}'s review of {BookInfo.objects.get(book_id=self.book_id).book_title}"
+        return f"{self.user.username}'s review of {self.book_title} | review ID {self.id}"
 
 
 class Commenting(models.Model):
@@ -73,12 +71,13 @@ class Commenting(models.Model):
     comment_text = models.TextField( max_length=100)
 
     def __str__(self):
-        return f"{self.user.username}'s comment on {BookInfo.objects.get(book_id=self.review.book_id).book_title}"
+        return f"{self.user.username}'s comment on {self.review}"
 
 
-class BookInfo(models.Model):
-    book_id = models.CharField(max_length=100, unique=True)
-    book_title = models.CharField(max_length=255)
+# class BookInfo(models.Model):
+#     book_id = models.CharField(max_length=100, unique=True)
+#     book_title = models.CharField(max_length=255)
+#     book_author = models.CharField(max_length=255)
 
-    def __str__(self):
-        return self.book_title
+#     def __str__(self):
+#         return self.book_title

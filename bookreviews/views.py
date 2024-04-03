@@ -5,7 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import get_user_model, login, logout
 
 # from .models import Book
-from .models import BookInfo
+# from .models import BookInfo
 from .models import Commenting
 from .models import CustomUser
 from .models import Review
@@ -28,9 +28,68 @@ from django.utils.decorators import method_decorator
 from django.core.cache import cache
 
 
+
+
+
+#### admin panel #####
+
+
+@login_required
+@permission_required("bookreviews.can_access_admin_panel")
+def admin_panel(request):
+    """ Function to display admin panel template to site admins. """
+    return render(request, "admin_panel.html")
+
+
+# User = get_user_model()
+
+
+@login_required
+@permission_required("bookreviews.can_view_user_details_in_admin_panel")
+def user_detail(request, user_id):
+    """ Function to display user details. """
+    user = get_object_or_404(CustomUser, pk=user_id)
+    return render(request, "user_detail.html", {"user": user})
+
+
+@login_required
+@permission_required('bookreviews.can_search_users_in_admin_panel')
+def search_users_reviews(request):
+    """ Function to search users and reviews by site admins. """
+    form = CombinedSearchForm(request.GET)
+    users = []
+    reviews = []
+    comments = []
+
+    if form.is_valid():
+        username = form.cleaned_data.get('username')
+        review_content = form.cleaned_data.get('review_content')
+        comment_text = form.cleaned_data.get('comment_text')
+
+        if username:
+            users = CustomUser.objects.filter(username__icontains=username)
+
+        if review_content:
+            reviews = Review.objects.filter(review_content__icontains=review_content)
+
+            # for review in reviews:
+            #     try:
+            #         book_title = Review.objects.get(review.book_id).book_title
+            #         review.book_title = book_title
+            #     except Review.DoesNotExist:
+            #         review.book_title = "Book Title Not Available"
+
+        if comment_text:
+            comments = Commenting.objects.filter(comment_text__icontains=comment_text)
+
+    return render(request, 'search_users_reviews.html', {'form': form, 'users': users, 'reviews': reviews, 'comments': comments})
+
+
+
 @login_required
 @permission_required("bookreviews.can_edit_reviews")
 def edit_any_review(request, review_id):
+    """ Function to allow site admins to edit any review. """
     review = get_object_or_404(Review, id=review_id)
     if request.method == "POST":
         form = ReviewForm(request.POST, instance=review)
@@ -57,6 +116,7 @@ def edit_any_review(request, review_id):
 @login_required
 @permission_required("bookreviews.can_delete_reviews")
 def delete_any_review(request, review_id):
+    """ Function to allow site admins to delete any review. """
     review = get_object_or_404(Review, id=review_id)
     if request.method == "POST" and request.POST.get("delete_any_review") == "yes":
         book_id = review.book_id  
@@ -73,6 +133,7 @@ def delete_any_review(request, review_id):
 @login_required
 @permission_required("bookreviews.can_delete_comments")
 def delete_comment(request, comment_id):
+    """ Function to allow site admins to delete any comment made on a review. """
     comment = get_object_or_404(Commenting, pk=comment_id)
     book_id = comment.review.book_id
     if request.method == "POST":
@@ -80,9 +141,10 @@ def delete_comment(request, comment_id):
         messages.success(request, "The comment has been deleted successfully.")
     return redirect("book_detail", book_id=book_id)
 
-
+@login_required
 @permission_required("bookreviews.can_view_users")
 def list_users(request):
+    """ Function to list all users by site admins. """
     if not request.user.has_perm("bookreviews.can_view_users"):
         pass
     users = CustomUser.objects.all()
@@ -91,9 +153,10 @@ def list_users(request):
         request, "list_users.html", {"users": users, "total_users": total_users}
     )
 
-
+@login_required
 @permission_required("bookreviews.can_edit_user")
 def edit_user(request, user_id):
+    """ Function to edit user by site admins. """
     if not request.user.has_perm("bookreviews.can_edit_user"):
         pass  
 
@@ -118,6 +181,7 @@ def edit_user(request, user_id):
 @login_required
 @permission_required("bookreviews.can_delete_users")
 def delete_user(request, user_id):
+    """ Function to delete user by site admins. """
     if request.method == "POST":
         user = get_object_or_404(CustomUser, pk=user_id)
         user.delete()
@@ -131,63 +195,16 @@ def delete_user(request, user_id):
 @login_required
 @permission_required("bookreviews.can_view_all_reviews")
 def total_reviews(request):
+    """ Function to display total number of reviews for site admins. """
     total_reviews = Review.objects.count()
     return render(request, "total_reviews.html", {"total_reviews": total_reviews})
 
 
-#### admin panel #####
-
-
-@login_required
-@permission_required("bookreviews.can_access_admin_panel")
-def admin_panel(request):
-    return render(request, "admin_panel.html")
-
-
-User = get_user_model()
-
-
-@login_required
-@permission_required("bookreviews.can_view_user_details_in_admin_panel")
-def user_detail(request, user_id):
-    user = get_object_or_404(CustomUser, pk=user_id)
-    return render(request, "user_detail.html", {"user": user})
-
-
-@login_required
-@permission_required('bookreviews.can_search_users_in_admin_panel')
-def search_users_reviews(request):
-    form = CombinedSearchForm(request.GET)
-    users = []
-    reviews = []
-    comments = []
-
-    if form.is_valid():
-        username = form.cleaned_data.get('username')
-        review_content = form.cleaned_data.get('review_content')
-        comment_text = form.cleaned_data.get('comment_text')
-
-        if username:
-            users = CustomUser.objects.filter(username__icontains=username)
-
-        if review_content:
-            reviews = Review.objects.filter(review_content__icontains=review_content)
-
-            for review in reviews:
-                try:
-                    book_title = BookInfo.objects.get(book_id=review.book_id).book_title
-                    review.book_title = book_title
-                except BookInfo.DoesNotExist:
-                    review.book_title = "Book Title Not Available"
-
-        if comment_text:
-            comments = Commenting.objects.filter(comment_text__icontains=comment_text)
-
-    return render(request, 'search_users_reviews.html', {'form': form, 'users': users, 'reviews': reviews, 'comments': comments})
-
+###### End of Admin Panel Functions ######
 
 
 def edit_review(request, review_id):
+    """ Function to edit a review. """
     review = get_object_or_404(Review, id=review_id)
     if review.user == request.user: 
         if request.method == "POST":
@@ -214,6 +231,7 @@ def edit_review(request, review_id):
 
 
 def delete_review(request, review_id):
+    """ Function to delete a review. """
     review = get_object_or_404(Review, id=review_id)
     if review.user == request.user: 
         if request.method == "POST" and request.POST.get("confirm_delete"):
@@ -231,6 +249,7 @@ def delete_review(request, review_id):
 
 
 def user_login(request):
+    """ Function to log in the user. """
     if request.method == "POST":
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
@@ -243,11 +262,13 @@ def user_login(request):
 
 
 def user_logout(request):
+    """ Function to log out the user. """
     logout(request)
     return redirect("index")
 
 
 def register(request):
+    """ Fucntion to register a new user. """
     if request.method == "POST":
         form = RegistrationForm(request.POST)
         if form.is_valid():
@@ -262,43 +283,67 @@ def register(request):
     return render(request, "register.html", {"form": form})
 
 
+# @login_required
+# def my_reviews(request):
+#     """ Display all of the user's reviews. """
+#     user_reviews = Review.objects.filter(user=request.user)
+#     reviews_with_books = []
+
+#     for review in user_reviews:
+
+#         cache_key = f"book_data_{review.book_id}"
+
+#         book_data = cache.get(cache_key)
+
+#         if not book_data:
+
+#             google_book_api = (
+#                 f"https://www.googleapis.com/books/v1/volumes/{review.book_id}"
+#             )
+#             response = requests.get(google_book_api).json()
+
+#             if "error" not in response:
+#                 info = response["volumeInfo"]
+#                 book_data = {
+#                     "title": info.get("title", "Title Not Available"),
+#                     "author": info.get("authors", ["Author Not Available"])[0],
+#                     "description": info.get("description", "No Description"),
+#                     "category": info.get("categories", ["No Categories"])[0],
+#                     "image": info.get("imageLinks", {}).get(
+#                         "thumbnail",
+#                         "https://islandpress.org/files/default_book_cover_2015.jpg",
+#                     ),
+#                 }
+
+#                 cache.set(
+#                     cache_key, book_data, timeout=3600
+#                 )  
+#             else:
+
+#                 book_data = None
+
+#         reviews_with_books.append({"review": review, "book": book_data})
+
+#     return render(
+#         request, "my_reviews.html", {"reviews_with_books": reviews_with_books}
+#     )
+
+##### testing a better my_Reviews function #####
+
 @login_required
 def my_reviews(request):
+    """ Display all of the user's reviews. """
     user_reviews = Review.objects.filter(user=request.user)
     reviews_with_books = []
 
     for review in user_reviews:
-
-        cache_key = f"book_data_{review.book_id}"
-
-        book_data = cache.get(cache_key)
-
-        if not book_data:
-
-            google_book_api = (
-                f"https://www.googleapis.com/books/v1/volumes/{review.book_id}"
-            )
-            response = requests.get(google_book_api).json()
-
-            if "error" not in response:
-                info = response["volumeInfo"]
-                book_data = {
-                    "title": info.get("title", "Title Not Available"),
-                    "author": info.get("authors", ["Author Not Available"])[0],
-                    "description": info.get("description", "No Description"),
-                    "category": info.get("categories", ["No Categories"])[0],
-                    "image": info.get("imageLinks", {}).get(
-                        "thumbnail",
-                        "https://islandpress.org/files/default_book_cover_2015.jpg",
-                    ),
-                }
-
-                cache.set(
-                    cache_key, book_data, timeout=3600
-                )  
-            else:
-
-                book_data = None
+        book_data = {
+            "title": review.book_title,
+            "author": review.book_author,
+            "description": review.book_description,
+            "category": review.book_category,
+            "image": review.book_image,
+        }
 
         reviews_with_books.append({"review": review, "book": book_data})
 
@@ -307,7 +352,11 @@ def my_reviews(request):
     )
 
 
+
+
+
 def index(request):
+    """ View function for home page of site."""
     # if request.method == 'POST':
     #     # Check if the form submission is for leaving a review
     #     form = ReviewForm(request.POST)
@@ -353,6 +402,7 @@ def index(request):
 
 # @login_required
 def book_detail(request, book_id):
+    """Function to display book details"""
     google_book_api = "https://www.googleapis.com/books/v1/volumes/{}".format(book_id)
     response = requests.get(google_book_api).json()
 
@@ -378,6 +428,7 @@ def book_detail(request, book_id):
 
 # @login_required
 def leave_review(request, book_id):
+    """ Function to leave a book review. """
     google_book_api = "https://www.googleapis.com/books/v1/volumes/{}".format(book_id)
     response = requests.get(google_book_api).json()
 
@@ -397,9 +448,9 @@ def leave_review(request, book_id):
     }
 
     # Save book information in the BookInfo model
-    book_info, created = BookInfo.objects.get_or_create(book_id=book_data["id"])
-    book_info.book_title = book_data["title"]  # Update book title
-    book_info.save()
+    # book_info, created = BookInfo.objects.get_or_create(book_id=book_data["id"])
+    # book_info.book_title = book_data["title"]  # Update book title
+    # book_info.save()
 
     if not request.user.is_authenticated:
         login_url = reverse("login")
@@ -418,6 +469,8 @@ def leave_review(request, book_id):
             review.book_id = book_data["id"]
             review.book_title = book_data["title"]  # Associate book title with review
             review.book_author = book_data["author"]
+            review.book_description = book_data["description"]
+            review.book_category = book_data["category"]
             review.user = request.user
             review.save()
             messages.success(request, "Your review has been submitted successfully.")
@@ -437,6 +490,7 @@ def leave_review(request, book_id):
 
 @login_required
 def add_comment_to_review(request, review_id):
+    """ Function to add a comment to a review. """
     review = get_object_or_404(Review, pk=review_id) 
     if request.method == "POST":
         form = CommentForm(request.POST)
@@ -452,6 +506,7 @@ def add_comment_to_review(request, review_id):
 
 
 def search_books(request):
+    """ Function to search books on Google Books API. """
     form = SearchForm(request.GET)
     books = []
 
@@ -495,3 +550,14 @@ def search_books(request):
                 books.append(book_data)
 
     return render(request, "search_results.html", {"form": form, "books": books})
+
+
+def review_detail(request, review_id):
+    """ Function to display review details. """
+    review = get_object_or_404(Review, id=review_id)
+    book_title = review.book_title
+    book_author = review.book_author
+    book_description = review.book_description
+    book_category = review.book_category
+    return render(request, 'review_detail.html', {'review': review , 'book_title': book_title, 'book_author': book_author, 'book_description': book_description, 'book_category': book_category})
+
