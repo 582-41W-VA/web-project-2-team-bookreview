@@ -42,7 +42,8 @@
             {% for review in reviews reversed%}
             
                 <li>
-                    {{ review.user.username }}'s review of  <a href="{% url 'book_detail' review.book_id %}">{{ review.book_title }}</a>  
+                    <p>Review ID: <a href="{% url 'review_detail' review_id=review.id %}">{{ review.id }}</a></p>
+                    <p>{{ review.user.username }}'s review of  <a href="{% url 'book_detail' review.book_id %}">{{ review.book_title }}</a> </p> 
                     <p>{{ review.review_content }} </p>
                     <p>Published on {{ review.review_date }}</p>
                  

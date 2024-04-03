@@ -1,0 +1,34 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Review Details</h1>
+
+    <p><strong>Review ID:</strong> {{ review.id }}</p>
+    <p><strong>Review by:</strong> {{ review.user.username }}</p>
+    <!-- <p><strong>Book ID:</strong> {{ review.book_id }}</p> -->
+    <p><strong>Book Title:</strong> {{ book_title }}</p>
+    <p><strong>Book Author:</strong> {{ book_author }}</p>
+    <!-- <p><strong>Book Description:</strong> {{ book_description }}</p> -->
+    <!-- <p><strong>Book Category:</strong> {{ book_category }}</p> -->
+    <p><strong>Review Date:</strong> {{ review.review_date }}</p>
+    <p><strong>Rating:</strong> {{ review.rating }}/5</p>
+    <p><strong>The Review:</strong> {{ review.review_content }}</p>
+    
+
+</body>
+</html>
+
+{% endblock %}

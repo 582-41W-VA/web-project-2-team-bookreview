@@ -18,8 +18,9 @@
 <body>
     <h1>My Reviews</h1>
     <ul>
-        {% for item in reviews_with_books %}
+        {% for item in reviews_with_books reversed %}
         <li>
+            Review ID: <a href="{% url 'review_detail' item.review.id %}">{{ item.review.id }}</a>
             Review for: <a href="{% url 'book_detail' item.review.book_id %}">{{ item.book.title }}</a>
             | Rating: {{ item.review.rating }}/5
             | Review content: {{ item.review.review_content }}

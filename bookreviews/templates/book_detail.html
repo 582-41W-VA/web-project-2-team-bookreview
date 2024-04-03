@@ -27,6 +27,7 @@
     <ul>
         {% for review in reviews reversed %}
             <li>
+                <p><a href="{% url 'review_detail' review.id %}">Review ID {{ review.id }}</a></p>
                 <p>Reviewer: {{ review.user.username }}  </p>
                 <p>Review: {{ review.review_content }}  </p>
                 <p>Rating: ({{ review.rating }}/5)  </p>
