@@ -16,21 +16,37 @@
 </head>
 
 <body>
-    <h1>My Reviews</h1>
-    <ul>
-        {% for item in reviews_with_books %}
-        <li>
-            Review for: <a href="{% url 'book_detail' item.review.book_id %}">{{ item.book.title }}</a>
-            | Rating: {{ item.review.rating }}/5
-            | Review content: {{ item.review.review_content }}
-            | Review date: {{ item.review.review_date }}
-            <a href="{% url 'edit_review' item.review.id %}">edit review</a>
-            <a href="{% url 'delete_review' item.review.id %}">delete review</a>
-        </li>
-        {% empty %}
-        <li>No reviews found.</li>
-        {% endfor %}
-    </ul>
+    <main>
+        <div class="container">
+        <article class="page-title-article">
+            <h1 class="page-title">My Reviews<img src="/static/bookreviews/images/icons/user.png" alt="Image of quil pen icon"></h1>
+        </article>
+
+
+{% for item in reviews_with_books %}
+<article class="my-reviews-1">
+    <div class="review-card">    
+        <h2>Review for:</h2>
+        <div class="review-rating">
+            <h2><a href="{% url 'book_detail' item.review.book_id %}">{{ item.book.title }}</a></h2>
+            <div class="my-review-page-rating">   
+                <h2>Rating:</h2> 
+                <h2>{{ item.review.rating }}/5</h2>
+            </div>
+        </div>
+        <h2> Review content:</h2> 
+        <p>T{{ item.review.review_content }} </p>
+     
+       <div class="button-holder">
+            <a href="{% url 'edit_review' item.review.id %}" class="secondary-link-dark">Edit</a>
+            <a href="{% url 'delete_review' item.review.id %}"class="secondary-link-dark">Delete</a>
+        </div>
+    </div>
+</article>
+{% empty %}
+    <p>No reviews found.</p>
+{% endfor %}        </div>
+    </main>
 </body>
 </html>
 

@@ -68,6 +68,73 @@
   .book-article.primary-link {
     text-align: left;
   }
+
+  /* ////// Alert-message///// */
+
+  .alert {
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    color: #fafafa;
+    font-size: clamp(1rem, 5vw, 1.2rem);
+    font-weight: 500;
+    text-align: center;
+    background-color: #1d2426; 
+  }
+
+  /* //////// reviwe section/////// */
+
+  .reviews-section p{
+    color: #000000;
+    font-size: clamp(1rem, 5vw, 1.2rem);
+    font-weight: 500;
+    text-align: left;
+    padding: 1rem 1rem;    
+  }
+
+  /* block form --- cammaent_form----book detail */
+
+  .block-form {
+    position: relative;
+}
+
+.block-form textarea {
+    /* border: 3px solid #0c7bdc; */
+    background-color: transparent;
+    padding: 0.5rem 1rem;
+    width: 95%;
+    font-size: clamp(1rem, 5vw, 1.2rem);
+    letter-spacing: 0.04em;
+    font-weight: 400;
+    position: relative;
+    resize: none;
+}
+
+.block-form .comment_form {
+    display: flex;
+    align-items: center;
+}
+
+.block-form .form-label {
+    margin-right: 10px;
+}
+
+/* ///////edit_review.html////// */
+.review-forms input{
+  color: #fafafa;
+    font-size: clamp(1rem, 5vw, 1.2rem);
+    padding: .7rem;
+    background-color: #1d2426;
+    border: #fafafa 1px solid;
+    width: 5rem;
+}
+
+.review-forms p{
+  padding: .5rem;
+}
+
+
   /* MEDIA QUERRIES FOR HOME PAGE */
   /* Media query for screens smaller than 768px */
   @media screen and (max-width: 768px) {

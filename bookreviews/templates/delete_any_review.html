@@ -14,16 +14,22 @@
     <link rel="stylesheet" href="{% static 'bookreviews/css/style.css' %}">
 </head>
 <body>
+    <main>
+
     {% if perms.bookreviews.can_delete_reviews %}
+    <article class="delete">
+
     <h1>Confirm Deleting this review</h1>
     <p>Are you sure you want to delete the review?</p>
     <form method="post">
         {% csrf_token %}
-        <button class="btn" type="submit" name="delete_any_review" value="yes">Yes, delete</button>
+        <button class="secondary-link-dark" type="submit" name="delete_any_review" value="yes">Yes, delete</button>
         <!-- Use review.book_id instead of review.book.id -->
-        <button class="btn" ><a href="{% url 'book_detail' review.book_id %}">Cancel</a></button>
+        <button class="secondary-link-dark" ><a href="{% url 'book_detail' review.book_id %}">Cancel</a></button>
     </form>
     {% endif %}
+        </article>
+    </main>
 </body>
 </html>
 

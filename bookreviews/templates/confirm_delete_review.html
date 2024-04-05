@@ -13,16 +13,24 @@
 
     <link rel="stylesheet" href="{% static 'bookreviews/css/style.css' %}">
 </head>
+
+
 <body>
-    <h1>Confirm Deletion</h1>
-    <p>Are you sure you want to delete the review?</p>
-    <form method="post">
-        {% csrf_token %}
-        <button class="btn" type="submit" name="confirm_delete" value="yes">Yes, delete</button>
-        <!-- Use review.book_id instead of review.book.id -->
-        <button class="btn" ><a href="{% url 'book_detail' review.book_id %}">Cancel</a></button>
-    </form>
+    <main>
+        <article class="delete">
+            <h1>Confirm Review Deletion</h1>
+            <p>Are you sure you want to delete the review?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button class="secondary-link-dark" type="submit" name="confirm_delete" value="yes">Yes, delete</button>
+            <!-- Use review.book_id instead of review.book.id -->
+            <button class="secondary-link-dark" formaction="{% url 'book_detail' review.book_id %}">Cancel</button>
+        </form>
+    </article>
+    </main>
 </body>
+
+
 </html>
 
 {% endblock %}

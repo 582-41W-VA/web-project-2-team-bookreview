@@ -9,22 +9,31 @@
 <head>
     <title>Leave a Review</title>
     {% load static %}
-
     <link rel="stylesheet" href="{% static 'bookreviews/css/style.css' %}">
 </head>
 <body>
+    
+    <main>
+        <div class="container">
+        <article class="review-page-title">
     <h1>Leave a Review for <a href=" {% url 'book_detail' book.id %} ">{{ book.title }}</a></h1>
-    <form method="post">
-        <fieldset class="review_form">
-            <legend>Review form</legend>
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button class="btn" type="submit">Submit Review</button>
-            <button class="btn" ><a href="{% url 'book_detail' book.id %}">Cancel</a></button>
-        </fieldset>
-    </form>
-    
-    
+        </article>
+
+        <article class="review-forms">
+
+            <form method="post">
+                <fieldset class="review_form">
+                    <legend>Food For Thoughts <img src="/static/bookreviews/images/icons/user.png" alt="Image of a Quil Pen Icon" class="icon"></legend>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="secondary-link-dark" type="submit">Submit Review</button>
+                    <button class="secondary-link-dark" ><a href="{% url 'book_detail' book.id %}">Cancel</a></button>
+                </fieldset>
+            </form>
+
+        </article>
+        </div>
+    </main>
 </body>
 </html>
 

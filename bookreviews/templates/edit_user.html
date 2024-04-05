@@ -10,20 +10,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'bookreviews/css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'bookreviews/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'bookreviews/css/header-footer.css' %}">
+    <link rel="stylesheet" href="{% static 'bookreviews/css/authentication.css' %}">
     <title>Edit User</title>
 </head>
 
 <body>
-    {% if perms.bookreviews.can_edit_users %}
-    <h1>Edit User by Admin</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save Changes</button>
-        <button><a href="{% url 'admin_panel' %}">Cancel</a></button>
-    </form>
+    <main>
+        
+
+        {% if perms.bookreviews.can_edit_users %}
+        <h1>Edit User by Admin</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Save Changes</button>
+            <button><a href="{% url 'admin_panel' %}">Cancel</a></button>
+        </form>
     {% endif %}
 
+    </main>
 </body>
 
 </html>

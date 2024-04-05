@@ -13,31 +13,27 @@
     display: block;
     justify-items: center;
     align-items: center;
-    padding-top: 1rem;
-    /* border: #0C7BDC 5px solid; */
-  }
+    padding-top: 1rem; 
+} 
+
   .authentication-div h4{
     text-align: center;
-  }
+  } 
 
   .authentication-logo {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 1rem;
+    padding-top: 1rem; 
     /* border: #0C7BDC 5px solid; */
-  }
-
-  .authentication-logo img {
-    width: 100%;
-    height: auto;
-  }
+   }
 
   .authentication-article .form-group {
-    /* display: flex;
+    display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    align-items: center; */
+    align-items: center;
+    padding: 0.5rem 0.5rem;
    }
 
   .authentication-article label p {
@@ -54,6 +50,10 @@
     color: #FAFAFA;
   }
 
+  .authentication-form{
+    max-width: 450px;
+  }
+
   .authentication-article h4 .secondary-link {
     color: #FAFAFA;
     padding: 0.5rem 0.5rem;
@@ -66,8 +66,43 @@
     border-bottom: 5px solid #FAFAFA;
     transition: all 0.5s ease;
   }
+  
+  .authentication-article{
+    /* border: red 5px solid; */
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
+  }
 
-  @media screen and (max-width: 900px) {
+  .authentication-logo{
+    /* border: blueviolet 5px solid; */
+    width: 100%;
+    height: auto;
+  }
+
+  .authentication-logo img{
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    /* border: #0C7BDC 5px solid; */
+    object-fit: contain;
+  }
+
+  .authentication-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 1rem;
+    /* border: green 5px solid; */
+  }
+
+  .helptext{
+    display: block;
+  }
+    
+     @media screen and (max-width: 900px) {
 
     .authentication-article {
       display: block;
@@ -79,14 +114,9 @@
     }
   }
 
-
   @media screen and (max-width: 600px) {
     .authentication-article .form-group {
       display: block;
     }
 
-  }
-  
-  
-    
-  
+  } 
