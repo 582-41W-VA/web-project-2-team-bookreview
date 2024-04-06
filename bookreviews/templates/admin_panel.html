@@ -11,23 +11,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Admin Panel</title>
+      <!-- Stylesheet -->
+      <link rel="stylesheet" href="../static/bookreviews/css/reset.css">
+      <link rel="stylesheet" href="../static/bookreviews/css/admin.css">
+      <link rel="stylesheet" href="../static/bookreviews/css/header-footer.css">
+        <!--  fontawesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!--  google fonts -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap" rel="stylesheet">
+  
 </head>
 
+
+
 <body>
+    <main>
+        <div class="container">
+            <article class="admin-panel">
+                <h1>Admin Panel</h1>
+                    <ul class="admin-panel-list">
+                        {% if perms.bookreviews.can_access_admin_panel %}
+                        <li class="admin-panel-item">
+                            <a href="{% url 'list_users' %}">Users <br> <i class="fa-solid fa-users"></i></a>
+                        </li>
+                        <li class="admin-panel-item">
+                            <a href="{% url 'total_reviews' %}">Reviews <br><i class="fa-solid fa-feather"></i></a>
+                        </li>
+                        <li class="admin-panel-item">
+                            <a href="{% url 'search_users_reviews' %}">Admin Search <br> <i class="fa-solid fa-magnifying-glass"></i></a>
+                        </li>
+                        {% endif %}
+                    </ul>
 
-    <div id="admin-panel">
-        <h2>Admin Panel</h2>
-        <ul>
-            {% if perms.bookreviews.can_access_admin_panel %}
-            <p><a href="{% url 'list_users' %}">list users</a></p>
-            <p><a href="{% url 'total_reviews' %}">total reviews</a></p>
-            <p><a href="{% url 'search_users_reviews' %}">Search Users OR Reviews OR Comments</a></p>
-
-            {% endif %}
-            <!-- Add more admin function links as needed -->
-        </ul>
-    </div>
+            </article>
+        </div>
+    </main>
 
 </body>
 

@@ -5,14 +5,33 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    {% load static %}
+      <!-- Stylesheet -->
+      <link rel="stylesheet" href="../static/bookreviews/css/reset.css">
+      <link rel="stylesheet" href="../static/bookreviews/css/admin.css">
+      <link rel="stylesheet" href="../static/bookreviews/css/header-footer.css">
+        <!--  fontawesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!--  google fonts -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap" rel="stylesheet">
+  
+</head>
+
+<!-- <head>
+
+    <meta charset="UTF-8">
     <title>{% block title %}My Website{% endblock %}</title>
     {% load static %}
 
     <link rel="stylesheet" href="{% static 'bookreviews/css/style.css' %}">
-</head>
+</head> -->
 
 <body>
-    <header>
+    <!-- <header>
         <h1>My Website</h1>
         <h2><a href="{% url 'index' %}">home</a></h2>
         {% if user.is_authenticated %}
@@ -34,7 +53,60 @@
             <button type="submit">Search</button>
         </form>
 
-    </header>
+    </header> -->
+
+    <header>
+        <div class="container">
+            <div class="header-wrap">
+                <figure class="logo">
+                    <a href="{% url 'index' %}">
+                        <img src="../static/bookreviews/images/ltr-book-review.png" alt="Image of LTR Logo">
+                    </a>
+                </figure>
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="{% url 'index' %}" >Home</a>
+    
+                        </li>
+                        <li>
+                            <a href="{% url 'my_reviews' %}">My Reviews
+                            </a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <div class="user-log-mark">
+                            {% if user.is_authenticated and user.is_superuser and perms.bookreviews.can_access_admin_panel %}
+                            <li>
+                                <a href="{% url 'admin_panel' %}">Admin Panel
+                                </a>
+                            </li>
+                            {% endif %}
+    
+                            <li>
+                                <a href="{% url 'logout' %}">Hi,{{ user.username }} | Sign Out</a>    
+                            </li>
+                            
+                        {% else %}
+                            <li>
+                                <a href="{% url 'login' %}">Login</a> | <a href="{% url 'register' %}">Register</a>  
+                            </li>
+                        {% endif %}
+
+
+       
+                        </div>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header-small-wrap">
+                <form class="search-form" method="GET" action="{% url 'search_books' %}">
+                    <input type="text" id="search" name="q" placeholder="Search">
+                    <button type="submit" class="search-a" style="margin-left: 1rem;"> <i class="fa-solid fa-magnifying-glass"></i></button>
+                    
+                </form>
+            </div>
+        </div>
+    </header> 
 
     {% for message in messages %}
     <div class="alert alert-{{ message.tags }}">

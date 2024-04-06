@@ -1,0 +1,177 @@
+/* ADMIN PAGES*/
+/* Admin panel*/
+.admin-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.admin-panel-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 1rem;
+  justify-items: center;
+  align-items: center;
+  max-width: 700px;
+}
+
+.admin-panel-item {
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center;
+  padding: 2rem 0.5rem 1rem 0.5rem; /* top, right, bottom, left */
+  width: 200px;
+  display: inline-block;
+  aspect-ratio: 1/1;
+  border: 5px solid #fafafa;
+  transition: all 0.5s ease;
+
+}
+
+.admin-panel-item  a {
+  color: #fafafa;
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(1rem, 5vw, 1.2rem);
+  text-transform: capitalize;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  align-self: center;
+  line-height: 1; 
+}
+
+.admin-panel-item  i {
+  color: #fafafa;
+  font-size: clamp(2rem, 5vw, 3rem);
+  transition: all 0.5s ease;
+  margin-top: 0.5rem;
+}
+
+.admin-panel-item  i:hover {
+  color: #0c7bdc;
+}
+
+/* Admin user list*/
+.admin-user h2{
+  color: #fafafa;
+  font-size: clamp(1rem, 5vw, 1.2rem);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.admin-user-table {
+  background-color: #fafafa;
+  color: #1d2426;
+  padding: 1rem 0.5rem;
+}
+.admin-user-table tr {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  padding: 1rem 0.5rem;
+  border-bottom: #0c7bdc 3px solid;
+}
+
+.main-user-list li {
+  background-color: #fafafa;
+  color: #1d2426;
+  font-size: clamp(1rem, 5vw, 1.2rem);
+  letter-spacing: 0.04em;
+  font-weight: 400;
+  padding: 1rem 1rem;
+  height: 300px;
+}
+/* Admin reviews*/
+
+.admin-panel-reviews {
+  background-color: #fafafa;
+  display: block;
+  justify-content: center;
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.admin-panel-reviews details {
+  padding: 1rem 0.5rem;
+  border-bottom: #0c7bdc 3px solid;
+}
+
+.admin-panel-reviews h2 {
+  font-family: "Oswald", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: capitalize;
+  font-weight: 500;
+  border-bottom: #0c7bdc 2px solid;
+}
+
+.admin-panel-reviews p {
+  font-size: 1rem;
+} 
+
+.review-headers {
+  display: grid;
+  grid-template-columns:  2fr 2fr 5fr 5fr 1fr;
+  gap: 1rem;
+}
+
+.review-info {
+  display: grid;
+  grid-template-columns: 2fr 2fr 5fr 5fr 1fr;
+  gap: 1rem;
+}
+
+.review-info i {
+  color: #0c7bdc;
+}
+
+.review-headers a {
+  color: #1d2426;
+  text-decoration: none;
+}
+
+/* Admin search*/
+
+.admin-search #search-user{
+  width: 80%;
+  max-width: 900px;
+}
+
+.admin-search-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-search-form label {
+  color: #fafafa;
+  
+}
+.admin-search-form i {
+  color: #fafafa;
+  font-size: 2rem;
+  display: inline-block;
+  width: 15%;
+}
+/* Admin edit user*/
+.user-label {
+color: #fafafa;
+font-family: "Oswald", sans-serif;
+font-size: clamp(1rem, 5vw, 1.4rem);
+text-transform: capitalize;
+letter-spacing: 0.04em;
+font-weight: 500;
+}
+
+.edit-user-form textarea {
+  padding: 0.5rem 1rem;
+  font-size: clamp(1rem, 5vw, 1.2rem);
+  letter-spacing: 0.04em;
+  font-weight: 400;
+  width: 70%;
+}
+
+.form-group-user {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  margin-bottom: 1rem;
+}
