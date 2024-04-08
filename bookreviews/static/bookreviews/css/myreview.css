@@ -1,0 +1,78 @@
+
+
+.my-review{
+    padding: 1rem 2rem;
+    box-shadow: 15px 20px 10px 0px rgb(0, 0, 0);
+    border: 5px solid white;
+    background-color: #FAFAFA;
+    color: #1d2426;
+    margin: 1rem auto;
+    border-bottom: #FAFAFA 5px solid;
+  }
+  
+  .my-review summary {
+    cursor: pointer;
+    border-bottom: transparent 5px solid;
+  }
+  
+  .my-review summary:hover{
+    cursor: pointer;
+    border-bottom: #0C7BDC 5px solid;
+  }
+  
+  .my-review summary h2 {
+    display: inline-block;
+  }
+  
+  .my-review summary i {
+    color: #0C7BDC;
+    font-size: 2rem;
+  }
+
+
+
+  .my-review summary::marker {
+    color: #0C7BDC;
+    font-size: 1.5rem;
+    text-indent: 1rem !important;
+    text-align: center !important;
+    text-align-last: start !important;
+  }
+  
+  .book-details {
+    overflow: hidden;
+    padding: 1rem 1rem;
+  }
+  
+  .book-details h3 { 
+    font-family: "Roboto Serif", serif;
+    font-size: clamp(1rem, 5vw, 1.2rem);
+    letter-spacing: 0.04em;
+    font-weight: 500;
+    float: left;
+  }
+  
+  
+  .my-review p {
+    margin-bottom: 1rem;
+  }
+
+
+
+/* MEDIA QUERRIES FOR MY REVIEWS / USER PAGE */
+/* Media query for screens smaller than 768px */
+@media screen and (max-width: 768px) {
+    .my-review{
+      padding: 1rem 1rem;
+    }
+  
+    .my-review summary::marker {
+      text-indent:0 !important;
+    }
+  
+    .book-details {
+      padding: 1rem 0;
+    }
+  
+  }
+  

@@ -1,122 +1,742 @@
+/* ################### HOME PAGE ###################*/
 
-*{
-    /* margin: 0; */
-    /* padding: 0; */
-    box-sizing: border-box;
+/* additional styles */
+
+.admin-button-holder{
+  margin-top: 1.5rem;
+  display: flex;
 }
 
-body{
-    background-image: url('../images/background.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: 15px;
-    min-height: 100vh;
+#no_reviews_no_comments{
+  /* margin-top: 1.5rem;
+  margin-left: 2.5rem; */
+  margin: 2.5rem 2.5rem;
+  font-size: clamp(1rem, 3vw, 1.6rem);
+  color: #eeeee5;
+  background-color: #515151;
+  display: inline-flex;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
 }
 
-li {
-    margin-top: 10px;
-    font-size: 22px;
+#reviews-section-title{
+  color: #fafafa;
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-weight: 500;
+  margin-top: 1.5rem;
+  margin-left: 2.5rem;
 }
 
-h1{
-    font-size: 36px;
+.review-details{
+  margin: 1rem;
+  background-color: white;
+  font-family: Roboto;
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  padding: 1rem 2rem;
 }
 
-p{
-    font-size: 20px;
+.single-review-details{
+  padding: 1rem;
+  background-color: rgb(238, 238, 238);
 }
 
-/* a{
-    font-size: 20px;
-} */
-
-/* button a{
-    border: 3px solid green;    
-} */
-
-.btn, .btn>a{
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 13px;
+#review-content{
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  color: #1d2426;
+  padding: 1rem 2rem;
 }
 
-header{
-    background-color: aquamarine;
-    width: 100%;
+#my-reviews-id-book-link {
+  color: #787d84;
+}
+
+#my-reviews-id-book-link:hover {
+  color: #0c7bdc;
+}
+
+/* //////////////// */
+
+
+
+/* book-main-card book-card */
+.book-article {
+    padding: 1rem 1rem;
+    box-shadow: 15px 20px 10px 0px rgb(0, 0, 0);
+    /* border: 5px solid white; */
+    background-color: #1d2426;
+  }
+  .book-article h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .book-article h3 {
+    margin-bottom: 1rem;
+  }
+  
+  .book-intro-card {
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+    grid-gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #1d2426;
+    color: #fafafa;
+    padding: 20px 20px;
+  }
+
+  header li p{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0.5rem 0.5rem;
+    
+  }
+  
+  .book-intro-card img {
+    height: auto;
+    width: 200px;
+    margin-right: 20px auto;
+    box-shadow: 15px 20px 10px 0px rgb(0, 0, 0);
+    justify-self: center;
+  }
+  
+  .book-intro-text {
+    padding: 20px 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: flex-start;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .book-card-bottom {
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+  }
+  
+  .book-article h4 {
+    color: #fafafa;
+    font-weight: 300;
+    text-align: center;
+  }
+  
+  .book-article.primary-link {
+    text-align: left;
+  }
+
+  /* ////// Alert-message///// */
+
+  .alert {
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    color: #fafafa;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    font-weight: 500;
+    text-align: center;
+    background-color: #1d2426; 
+  }
+
+  /* //////// reviews section/////// */
+
+
+  /* this was adjusted from the original - padding removed  */
+  .reviews-section p{
+    color: #000000;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    font-weight: 500;
+    text-align: left;
+    margin-top: 0.8rem;
+    /* padding: 1rem 1rem;     */
+  }
+
+  /* block form --- cammaent_form----book detail */
+
+  .block-form {
+    position: relative;
+}
+
+.block-form textarea {
+    /* border: 3px solid #0c7bdc; */
+    background-color: transparent;
+    padding: 0.5rem 1rem;
+    width: 95%;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    letter-spacing: 0.04em;
+    font-weight: 400;
+    position: relative;
+    resize: none;
+}
+
+.block-form .comment_form {
+    display: flex;
+    align-items: center;
+}
+
+.block-form .form-label {
+    margin-right: 10px;
+}
+
+/* ///////edit_review.html////// */
+.review-forms input{
+  color: #fafafa;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    padding: .7rem;
+    background-color: #1d2426;
+    border: #fafafa 1px solid;
+    width: 5rem;
+}
+
+.review-forms p{
+  padding: .5rem;
 }
 
 
-.alert{
-    color: rgb(195, 4, 4);
-    /* display:table; */
-    /* background-color: red; */
-    font-weight: bold;
-    font-size: 22px;
-    margin: 10px 0;
-}
+  /* MEDIA QUERRIES FOR HOME PAGE */
+  /* Media query for screens smaller than 768px */
+  @media screen and (max-width: 768px) {
+    .book-intro-card {
+      display: block;
+      text-align: center;
+    }
 
-/* .login-link,
-.register-link{
-    font-size: 20px;
-    font-weight: bold;
-    text-decoration: none;
-    color: rgb(4, 4, 195);
-    border-radius: 10px;
-    padding: 5px;
-    border: 3px solid rgb(4, 4, 195);
-}    */
+    
+  
+    .book-intro-text {
+      padding: 10px 10px;
+      justify-items: center;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  
+    .book-article h2 {
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+  
+    .book-article h3 {
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+  
+    .book-card-bottom {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+  
+    .book-article .book-card-bottom .primary-link {
+      text-align: center;
+    }
+  }
+  
+  @media screen and (max-width: 325px) {
+    .book-intro-card img {
+      width: 170px;
+    }
+  }
+  
+  /*MY REVIEWS PAGE - USER PAGE */
+  
+  .review-card {
+    padding: 1rem 1rem;
+    box-shadow: 15px 20px 10px 0px rgb(0, 0, 0);
+    border: 5px solid white;
+    background-color: #fafafa !important;
+    color: #1d2426;
+    margin: 1rem auto;
+    margin-bottom: 2.5rem;
+    border-bottom: #fafafa 5px solid;
+  }
+  
+  .review-card a {
+    color: #1d2426;
+    font-weight: 500;
+  }
+  
+  .my-review-page-rating {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  
+  /*SINGLE BOOK PAGE*/
+  .book-single-page {
+    padding: 1rem 1rem;
+  }
+  
+  .book-page-details {
+    background-color: #fafafa;
+    padding: 1rem 1rem;
+  }
+  
+    /* this was adjusted from the original - padding adjust to 1rem 0  */
+  .review-rating {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+  }
+  
+  .review-rating h2 {
+    border-bottom: #0c7bdc 5px solid;
+  }
+  
+  /* adjusted this to remove the border from the comment form */
 
+  /* .my-review .block-form {
+    border-bottom: 2px solid #0c7bdc5f;
+  } */
 
-
-.register_form{
-    border: 2px solid black;
-}
-
-
-.book_description{
-    width: auto;
-    height: 25px;
+  .comment-form-group {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .comment-form-group textarea {
+    border: 0px solid rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+    padding: 0.5rem 1rem;
+    width: 85%;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    letter-spacing: 0.04em;
+    font-weight: 400;
+  }
+  .comment-details summary {
+    border-bottom: #0c7bdc 5px solid;
+    transition: all 0.5s ease;
+    box-shadow: #1d242600 5px 10px 5px 0px;
+  }
+  
+  .comment-details summary:hover {
+    box-shadow: #1d2426d0 5px 10px 5px 0px;
+  }
+  .comment-details summary i {
+    color: #0c7bdc;
+    margin-left: 1rem;
+  }
+  
+  summary::marker {
+    color: rgba(0, 0, 0, 0);
+  }
+  
+  .send-button {
+    color: #1d2426;
+    /* width: 10%; */
+    background-color: rgba(0, 0, 0, 0);
+    border: 0px;
+    display: inline-block;
+    margin: 2.5rem 1rem 0rem 1rem;
+    transition: all 0.5s ease;
+    border-bottom: transparent 5px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .send-button:hover {
+    cursor: pointer;
+    color: #0c7bdc;
+    border-bottom: #0c7bdc 5px solid;
+  }
+  
+  .send-button i {
+    font-size: 2rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .my-review .button-holder {
+    justify-content: flex-end;
+  }
+  
+  .other-single-comment {
+    background-color: #ffffff;
+    padding: 0.5rem 0.5rem;
+    margin: 1rem auto;
+    box-shadow: 3px 3px 3px 2px rgba(31, 31, 31, 0.557);
+  }
+  
+  .my-review {
+    padding: 1rem 2rem;
+    box-shadow: 15px 20px 10px 0px rgb(0, 0, 0);
+    border: 5px solid white;
+    background-color: #fafafa;
+    color: #1d2426;
+    margin: 2.5rem auto;
+    border-bottom: #fafafa 5px solid;
+  }
+  
+  .my-review summary {
+    cursor: pointer;
+    border-bottom: transparent 5px solid;
+  }
+  
+  .my-review summary:hover {
+    cursor: pointer;
+    border-bottom: #0c7bdc 5px solid;
+  }
+  
+  .my-review summary h2 {
+    display: inline-block;
+  }
+  
+  .book-details {
     overflow: hidden;
-}
+    padding: 1rem 1rem;
+  }
+  
+  .book-details h3 {
+    font-family: "Roboto Serif", serif;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    letter-spacing: 0.04em;
+    font-weight: 500;
+    float: left;
+  }
+  
+/* this was adjusted from the original - margin bottom  removed  */
+  /* .my-review p {
+    margin-bottom: 1rem;
+  } */
+  
+  /* MEDIA QUERRIES FOR SINGLE BOOK PAGE */
+  /* Media query for screens smaller than 768px */
+  @media screen and (max-width: 768px) {
+    .my-review {
+      padding: 1rem 1rem;
+    }
+  
+    .book-details {
+      padding: 1rem 0;
+    }
+  }
+  
+  /* ADD/EDIT/DELETE A REVIEW PAGES */
+  .review-page-title {
+    display: flex;
+    justify-content: center;
+  }
+  .review-page-title h1 {
+    color: #fafafa;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    text-transform: capitalize;
+    font-family: "Oswald", sans-serif;
+    font-weight: 500;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-bottom: #0c7bdc 5px solid;
+  }
+
+/* Added this line to fix the leave review for "book link" */
+  .review-page-title a {
+    color: #a8cee3;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    text-transform: capitalize;
+    font-family: "Oswald", sans-serif;
+    font-weight: 700;
+    display: inline-block;
+    transition: all 0.5s ease;
+
+  }
+
+  .review-page-title a:hover {
+    color: #0c7bdc;
+  }
+/* //////////////////////////////////////////// */
 
 
-.book_thumbnail{
-    width: 100px;
-    height: 140px;
-    margin: 20px 0;
-}
+  
+  .review-forms {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .review-forms form {
+    margin-right: auto;
+    margin-left: auto;
+    width: 90%;
+  }
+  
+  .review-form-group {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 2rem;
+  }
+  
+  .review-forms legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .review-forms legend .icon {
+    height: clamp(1.3rem, 2.5vw, 1.8rem);
+    margin-left: 0.5rem;
+  }
+  
+  .review-forms label {
+    color: #fafafa;
+    font-family: "Oswald", sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    text-transform: capitalize;
+    letter-spacing: 0.04em;
+    font-weight: 500;
+    border-bottom: #0c7bdc 2px solid;
+    padding: 1rem 1rem;
+  }
+  
+  .review-form-group .review-form-rating {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  
+  }
+  
+  select#numberSelect {
+    color: #fafafa;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    padding: 0 0.5rem;
+    background-color: #1d2426;
+    border: #fafafa 1px solid;
+  }
+  
+  .review-forms textarea {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    letter-spacing: 0.04em;
+    font-weight: 400;
+    width: 100%;
+    padding: 1rem 1rem;
+    height: 30vh;
+  }
+  
+  .review-forms .button-holder {
+    justify-content: flex-end;
+  }
+  
+  .review-forms .button-holder .primary-link {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    letter-spacing: 0.04em;
+    text-transform: capitalize;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-bottom: #fafafa 5px solid;
+    margin: 1rem 1rem;
+  }
+  .delete {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .delete h1 {
+    margin-bottom: 1rem;
+  }
+  .delete p {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    text-transform: capitalize;
+    font-weight: 500;
+    color: #fafafa;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .delete-buttons {
+    display: flex;
+  }
+  
+  /* RESPONSIVE FOR: ADD/EDIT/DELETE A REVIEW PAGES */
+  
+  @media screen and (max-width: 668px) {
+    .review-form-group {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem 1rem;
+    }
+  }
+  
+  /* ADMIN PAGES*/
+  /* Admin panel*/
+  /* .admin-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .admin-panel-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 1rem;
+    justify-items: center;
+    align-items: center;
+    max-width: 700px;
+  }
+  
+  .admin-panel-item {
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center;
+    padding: 2rem 0.5rem 1rem 0.5rem;
+    width: 200px;
+    display: inline-block;
+    aspect-ratio: 1/1;
+    border: 5px solid #fafafa;
+    transition: all 0.5s ease;
+  
+  }
+  
+  .admin-panel-item  a {
+    color: #fafafa;
+    font-family: "Oswald", sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    text-transform: capitalize;
+    letter-spacing: 0.04em;
+    font-weight: 500;
+    align-self: center;
+    line-height: 1; 
+  }
+  
+  .admin-panel-item  i {
+    color: #fafafa;
+    font-size: clamp(2rem, 2.5vw, 3rem);
+    transition: all 0.5s ease;
+    margin-top: 0.5rem;
+  }
+  
+  .admin-panel-item  i:hover {
+    color: #0c7bdc;
+  }
+  
+  .admin-user h2{
+    color: #fafafa;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .admin-user-table {
+    background-color: #fafafa;
+    color: #1d2426;
+    padding: 1rem 0.5rem;
+  }
+  .admin-user-table tr {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    padding: 1rem 0.5rem;
+    border-bottom: #0c7bdc 3px solid;
+  }
+  
+  .main-user-list li {
+    background-color: #fafafa;
+    color: #1d2426;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    letter-spacing: 0.04em;
+    font-weight: 400;
+    padding: 1rem 1rem;
+    height: 300px;
+  }
 
-
-.review_form label{
+  
+  .admin-panel-reviews {
+    background-color: #fafafa;
     display: block;
-}
+    justify-content: center;
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  .admin-panel-reviews details {
+    padding: 1rem 0.5rem;
+    border-bottom: #0c7bdc 3px solid;
+  }
+  
+  .admin-panel-reviews h2 {
+    font-family: "Oswald", sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    text-transform: capitalize;
+    font-weight: 500;
+    border-bottom: #0c7bdc 2px solid;
+  }
+  
+  .admin-panel-reviews p {
+    font-size: 1rem;
+  } 
+  
+  .review-headers {
+    display: grid;
+    grid-template-columns:  2fr 2fr 5fr 5fr 1fr;
+    gap: 1rem;
+  }
+  
+  .review-info {
+    display: grid;
+    grid-template-columns: 2fr 2fr 5fr 5fr 1fr;
+    gap: 1rem;
+  }
+  
+  .review-info i {
+    color: #0c7bdc;
+  }
+  
+  .review-headers a {
+    color: #1d2426;
+    text-decoration: none;
+  }
+  
 
-.comment_form{
-    display: inline;
-    /* flex-direction: row; */
-    /* align-items: center; */
-    /* justify-content: center; */
-    /* flex-wrap: nowrap; */
-    /* padding: 0; */
-    margin: 20px 0;
-}
+  
+  .admin-search #search-user{
+    width: 80%;
+    max-width: 900px;
+  }
+  
+  .admin-search-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .admin-search-form label {
+    color: #fafafa;
+    
+  }
+  .admin-search-form i {
+    color: #fafafa;
+    font-size: 2rem;
+    display: inline-block;
+    width: 15%;
+  }
 
-.comment_form label{
-    display: block;
-    font-size: 16px;
-}
-
-#admin-edit-review,
-#admin-delete-review{
-    display: inline-flex;
-    font-size: 22px;
-    color: red;
-    border: 2px solid black
-   
-}
-
-button{
-    margin: 10px;
-}
+  .user-label {
+  color: #fafafa;
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  text-transform: capitalize;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  }
+  
+  .edit-user-form textarea {
+    padding: 0.5rem 1rem;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    letter-spacing: 0.04em;
+    font-weight: 400;
+    width: 70%;
+  }
+  
+  .form-group-user {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    margin-bottom: 1rem;
+  } */
