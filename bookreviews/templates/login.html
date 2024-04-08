@@ -3,28 +3,49 @@
 <head>
     <title>Login</title>
     {% load static %}
+    <link rel="stylesheet" href="{% static 'bookreviews/css/authentication.css' %}">
+    <link rel="stylesheet" href="{% static 'bookreviews/css/reset.css' %}">
     <link rel="stylesheet" href="{% static 'bookreviews/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'bookreviews/css/header-footer.css' %}">
+    
+    
 
 </head>
 <body>
+    <main>
+        <div class="container">
+            <article class="authentication-article" data-aos="fade-down">
+                <figure class="authentication-logo">  
+                    <a href="{% url 'index' %}">
+                        <img src="{% static 'bookreviews/images/ltr-logo-dark-background.svg' %}" alt="Logo">
+                    </a>
+                </figure>
+            
 
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-info" role="alert">
-                {{ message|safe }}
+            
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-info" role="alert">
+                        {{ message|safe }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+    
+            <div class="authentication-div" >
+                <form method="post" class="authentication-form">
+                    <fieldset>
+                        <legend>Login</legend>
+                        <div class="form-group">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="primary-button">Login</button>
+                        </div>
+                    </fieldset>
+                </form>
+                <h4>Don't have an account? <a class="secondary-link" href="{% url 'register' %}">Register</a></h4>
             </div>
-        {% endfor %}
-    {% endif %}
-    
-
-    <h2><a href="{% url 'index' %}">home</a></h2>
-    <h3>Don't have an account? <a href="{% url 'register' %}">Register</a></h3>
-    
-    <h1>Login</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
+            </article>
+        </div>
+    </main>
 </body>
 </html>
