@@ -16,22 +16,36 @@
 </head>
 
 <body>
-    <h1>My Reviews</h1>
-    <ul>
+    <div class="container">
+        <article class="page-title-article">
+            <h1 class="page-title">My Reviews<img src="/static/bookreviews/images/icons/user.png" alt="Image of quil pen icon"></h1>
+        </article>
+
         {% for item in reviews_with_books reversed %}
-        <li>
-            Review ID: <a href="{% url 'review_detail' item.review.id %}">{{ item.review.id }}</a>
-            Review for: <a href="{% url 'book_detail' item.review.book_id %}">{{ item.book.title }}</a>
-            | Rating: {{ item.review.rating }}/5
-            | Review content: {{ item.review.review_content }}
-            | Review date: {{ item.review.review_date }}
-            <a href="{% url 'edit_review' item.review.id %}">edit review</a>
-            <a href="{% url 'delete_review' item.review.id %}">delete review</a>
-        </li>
+        <section class="my-reviews-1">
+            <div class="review-card">  
+                <h3>Review ID: <a id="my-reviews-id-book-link" href="{% url 'review_detail' item.review.id %}">{{ item.review.id }}</a></h3>  
+                
+                <div class="review-rating">
+                    <h2>Review for:
+                    <a id="my-reviews-id-book-link" href="{% url 'book_detail' item.review.book_id %}">{{ item.book.title }}</a></h2>
+                    <div class="my-review-page-rating">   
+                        <h2>Rating: {{ item.review.rating }}/5</h2>
+                    </div>
+                </div>
+                <h2> Review content:</h2> 
+                <p>{{ item.review.review_content | safe }} </p>
+            
+            <div class="button-holder">
+                    <a href="{% url 'edit_review' item.review.id %}" class="secondary-link-dark">Edit</a>
+                    <a href="{% url 'delete_review' item.review.id %}"class="secondary-link-dark">Delete</a>
+                </div>
+            </div>
+        </section>
         {% empty %}
-        <li>No reviews found.</li>
-        {% endfor %}
-    </ul>
+            <p>No reviews found.</p>
+        {% endfor %}        
+    </div>
 </body>
 </html>
 

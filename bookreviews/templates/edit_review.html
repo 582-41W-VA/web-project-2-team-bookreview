@@ -13,16 +13,24 @@
     <link rel="stylesheet" href="{% static 'bookreviews/css/style.css' %}">
 </head>
 <body>
-    <h1>Edit Review</h1>
-    <fieldset class="review_form">
-        <legend>Edit Review</legend>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button class="btn" type="submit">Save Changes</button>
-            <button class="btn"><a href="{% url 'book_detail' book.id %}">Cancel</a></button>
-        </form>
-    </fieldset>
+    <div class="container">
+        <article class="review-page-title">
+            <h1>Edit Your Review</h1>
+        </article>
+
+        <article class="review-forms">
+        <fieldset class="review_form">
+            <legend>Want To Change Something?<img src="/static/bookreviews/images/icons/user.png" alt="Image of a Quil Pen Icon" class="icon"></legend>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="secondary-link-dark" type="submit">Save Changes</button>
+                <button class="secondary-link-dark" type="submit" formaction="{% url 'book_detail' book.id %}" >cancel</button>
+            </form>
+        </fieldset>
+    </article>
+</div>
+
 </body>
 </html>
 

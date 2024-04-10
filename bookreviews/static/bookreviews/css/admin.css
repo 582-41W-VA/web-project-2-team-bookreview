@@ -4,13 +4,12 @@
 .admin-buttons{
   background: #525252;
   color: #fafafa;
-  padding: 0.1rem 0.5rem;
+  padding: 0.3rem 1rem;
   border-radius: 5px;
-  margin: 0.3rem;
+  margin: 0.5rem;
   transition: all 0.5s ease;
-  display: inline-flex;
-  font-size: 16px !important;
-  /* width: 50%; */
+  display: block;
+  font-size: 1rem !important;
 }
 
 /* .admin-buttons-holder {
@@ -18,17 +17,36 @@
   flex-direction: column;
 } */
 
-.table-review-content{
-  text-align: left;
-  padding: 0.5rem 1.5rem !important;
-  
+/*Review search results table columns ID's */
+/* table_search_results_review_id
+table_search_results_username
+table_search_results_book_title
+table_search_results_published_date
+table-review-content
+table_search_results_action_buttons */
+
+#table_search_results_action_buttons{
+  width: 12rem;
 }
 
+
+#table-review-content *{
+  text-align: left !important;
+  font-size: clamp(0.8rem, 2.5vw, 1rem) !important;
+  padding: 0.5rem 1.5rem !important;
+
+}
+
+#table-review-content{
+  /* max-width: 30rem !important; */
+}
+
+
 /* Added this to fix font size in the search results table  */
-.admin-user-table *{
+/* .admin-user-table *{
   font-size: clamp(0.8rem, 2.5vw, 1rem) !important;
   line-height: 1.8rem;
-}
+} */
 
 
 
@@ -132,6 +150,7 @@
   width: 100%;
   border-collapse: separate;
   margin-bottom: 20px;
+  /* table-layout: fixed; */
 }
 
 
@@ -141,6 +160,7 @@
   padding: 0.5rem ;
   font-size: 16px;
   font-family: "Oswald", sans-serif;
+  /* overflow: hidden; */
 }
 
 .admin-user-table th,

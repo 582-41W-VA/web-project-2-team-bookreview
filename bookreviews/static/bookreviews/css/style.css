@@ -11,9 +11,11 @@
   /* margin-top: 1.5rem;
   margin-left: 2.5rem; */
   margin: 2.5rem 2.5rem;
-  font-size: clamp(1rem, 3vw, 1.6rem);
-  color: #eeeee5;
-  background-color: #515151;
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 700;
+  font-family: ROBOTO;
+  color: #00b1ec;
+  /* background-color: #515151; */
   display: inline-flex;
   padding: 0.5rem;
   border-radius: 0.5rem;
@@ -52,6 +54,10 @@
 
 #my-reviews-id-book-link:hover {
   color: #0c7bdc;
+}
+
+.fa-magnifying-glass{
+  cursor: pointer;
 }
 
 /* //////////////// */

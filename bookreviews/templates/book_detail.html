@@ -5,86 +5,123 @@
 {% block content %}
 
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Book Detail {{ book.title }}</title>
-    {% load static %}
+<html lang="en">
 
-    <link rel="stylesheet" href="{% static 'bookreviews/css/style.css' %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Detail</title>
 </head>
+
 <body>
 
+    <div class="container">
+        <article class="page-title-article">
+            <h1 class="page-title">Book Info <img src="/static/bookreviews/images/icons/book-icon-dark-background.png"
+                    alt="Image of book icon"></h1>
 
-    <h1>{{ book.title }}</h1>
-    <p><strong>Author:</strong> {{ book.author }}</p>
-    <p><strong>Category:</strong> {{ book.category }}</p>
-    <p><strong>Description:</strong> {{ book.description | safe }}</p>
-    <img src="{{book.image}}" alt="">
-    <P>
-        <a href="{% url 'leave_review' book.id %}">Leave a review</a>
-    </P>
-    <h2>Reviews:</h2>
-    <ul>
+        </article>
+
+        <article class="book-article book-single-page">
+            <figure class="book-intro-card">
+                <img src="{{ book.image }}" alt="">
+                <figcaption class="book-intro-text">
+                    <h2>{{ book.title }}</h2>
+                    <h3>{{ book.author }}</h3>
+                    <h4>{{ book.category }}</h4>
+                </figcaption>
+            </figure>
+            <div class="book-page-details">
+                <h3><i class="fa-solid fa-paperclip"></i> Short Summary</h3>
+                <p>{{ book.description | safe }}</p>
+            </div>
+            <a href="{% url 'leave_review' book.id %}" class="primary-link">Share your thoughts, add a review</a>
+        </article>
+    </div> <!-- End of book details container -->
+
+    <!-- Review Section -->
+    <section class="reviews-section">
+
+        <div class="container">
+            <h2 id="reviews-section-title">Reader's Reviews</h2>
+        </div>
+
         {% for review in reviews reversed %}
-            <li>
-                <p><a href="{% url 'review_detail' review.id %}">Review ID {{ review.id }}</a></p>
-                <p>Reviewer: {{ review.user.username }}  </p>
-                <p>Review: {{ review.review_content }}  </p>
-                <p>Rating: ({{ review.rating }}/5)  </p>
-                <p>Date reviewed: {{ review.review_date }}</p>
-                {% if review.user == request.user %}
-                    <a href="{% url 'edit_review' review.id %}">Edit Review</a>
-                    <a href="{% url 'delete_review' review.id %}">Delete Review</a>
-                {% endif %}
-                
-                {% if perms.bookreviews.can_edit_reviews %}
-                    <a id="admin-edit-review" href=" {% url 'edit_any_review' review.id %} ">Admin: Edit This Review</a>
-                {% endif %}
-                {% if perms.bookreviews.can_delete_reviews %}
-                    <a id="admin-delete-review" href=" {% url 'delete_any_review' review.id %} ">Admin: Delete This Review</a>
-                {% endif %}
-            </li>
-            <!-- Display comments on this review -->
-            
-                <h2>Comments on this review:</h2>
-                {% for comment in review.commenting_set.all %}
-                    <p>- User {{ comment.user.username }}'s comment: {{ comment.comment_text }}</p>
-                
-                    {% if perms.bookreviews.can_delete_comments %}
-                    <form action="{% url 'delete_comment' comment.id %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit">Delete Comment</button>
-                    </form>
+            <div class="container">
+            <article class="my-review">
+                <div class="review-rating">
+                    <h3><a href="{% url 'review_detail' review.id %}">Review ID {{ review.id }}</a></h3>
+                    <h3>Review By: {{ review.user.username }}</h3>
+                    <div>
+                        <h3>Rating: ({{ review.rating }}/5)</h3>
+                        <p>Reviewed On: {{ review.review_date }}</p>
+                    </div>
+                </div>
+                <div class="single-review-details">
+                    <p>{{ review.review_content | safe }}</p>
+                    {% if review.user == request.user %}
+                    <div class="button-holder">
+                        <a href="{% url 'edit_review' review.id %}" class="secondary-link-dark">Edit</a>
+                        <a href="{% url 'delete_review' review.id %}" class="secondary-link-dark">Delete</a>
+                    </div>
                     {% endif %}
+                    {% if perms.bookreviews.can_edit_reviews and perms.bookreviews.can_delete_reviews %}
+                    <div class="admin-button-holder">
+                        <a class="secondary-link-dark" id="admin-edit-review"
+                            href="{% url 'edit_any_review' review.id %}">Admin Edit Review</a>
+                        <a class="secondary-link-dark" id="admin-delete-review"
+                            href="{% url 'delete_any_review' review.id %}">Admin Delete Review</a>
+                    </div>
+                    {% endif %}
+                </div>
 
-
-                {% empty %}
-                    <p>No comments yet.</p>
-                {% endfor %}
-            
-            <!-- Comment form for adding a comment to the review -->
-            <details style="padding: 20px; color: #4968db; font-size: 22px;"> 
-                <summary>Add a comment</summary>
-                <div>
-                    <form method="post" action="{% url 'add_comment_to_review' review.id %}">
+                <details class="comment-details">
+                    <summary>
+                        <h3>Comment Party! <i class="fa-solid fa-comments"></i></h3>
+                    </summary>
+                    <form action="{% url 'add_comment_to_review' review.id %}" method="POST" class="block-form">
                         {% csrf_token %}
                         <fieldset class="comment_form">
-                            <legend>Add a comment to this review:</legend>
                             {{ comment_form.as_p }}
-                            <button type="submit">Submit Comment</button>
+                            <button class="send-button" type="submit"><i
+                                    class="fa-regular fa-paper-plane"></i>Submit Comment</button>
                         </fieldset>
                     </form>
-                </div>
-            </details>
+                    {% for comment in review.commenting_set.all %}
+                    <div class="other-comments">
+                        <div class="other-single-comment">
+                            <div class="comment-info">
+                                <p>User {{ comment.user.username }}'s comment on this review: <strong>{{ comment.comment_text | safe }}</strong></p>
+                            </div>
+                            {% if perms.bookreviews.can_delete_comments %}
+                            <form action="{% url 'delete_comment' comment.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="secondary-link-dark">Delete</button>
+                            </form>
+                            {% endif %}
+                        </div>
+                    {% empty %}
+                    <p id="no_reviews_no_comments">No Comments yet!</p>
+                    {% endfor %}
+
+                    </div>
+                </details>
+            </div> <!-- End of review loop container -->
+            </article>
         {% empty %}
-            <li>No reviews yet.</li>
+        <div class="container">
+            <p id="no_reviews_no_comments">No reviews yet.</p>
+        </div>
         {% endfor %}
-    </ul>
-    
-    
+
+
+    </section>
+
+
 
 
 </body>
+
 </html>
 
 {% endblock %}

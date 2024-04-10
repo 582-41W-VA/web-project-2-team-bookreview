@@ -15,13 +15,19 @@
 
 <body>
     {% if perms.bookreviews.can_edit_users %}
-    <h1>Edit User by Admin</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save Changes</button>
-        <button><a href="{% url 'admin_panel' %}">Cancel</a></button>
-    </form>
+    <!-- <h1>Edit User by Admin</h1> -->
+    <fieldset class="admin-edit-user-fieldset">
+        <legend>Edit User by Admin</legend>
+        <form class="admin-edit-user-form" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="secondary-link-dark" type="submit">Save Changes</button>
+            <!-- <a href="{% url 'admin_panel' %}"><input type="submit" value="Save Changes"></a> -->
+            <!-- <button><a href="{% url 'admin_panel' %}">Cancel</a></button> -->
+            <button class="secondary-link-dark" type="submit" formaction="{% url 'admin_panel' %}" >Cancel</button>
+        </form>
+    
+    </fieldset>
     {% endif %}
 
 </body>

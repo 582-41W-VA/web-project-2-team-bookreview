@@ -12,21 +12,52 @@
     <title>List users</title>
 </head>
 <body>
-    <h1>List of Users</h1>
-    <ul>
-        
-        {% if perms.bookreviews.can_list_users %}
-        <p>Total registered users: {{ total_users }}</p>
-        {% for user in users %}
-            <li>{{ user.username }} - {{ user.email }} - {{ user.first_name }} - {{ user.last_name }}</li>
-            <a href="{% url 'edit_user' user_id=user.id %}">Edit User</a>
-            <a href="{% url 'delete_user' user_id=user.id %}">Delete User</a>
-            <!-- Add more user information as needed -->
-        {% endfor %}
-        {% endif %}
+
+    
+    <section class="admin-user-list">
+        <div class="container">
+            <article class="admin-user">
+                <h1>User List</h1>
+                {% if perms.bookreviews.can_list_users %}
+                <h2>Total Registered Users:  {{ total_users }}</h2>
+                <table class="admin-user-table">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.first_name }}</td>
+                            <td>{{ user.last_name }}</td>
+                            <td class="list-users-buttons">
+                                <a href="{% url 'edit_user' user_id=user.id %}" class="secondary-link-dark">Edit</a>
+                                <a href="{% url 'delete_user' user_id=user.id %}" class="secondary-link-dark">Delete</a>
+                            </td>
+                        </tr>
+                        <!-- Add more user rows here if needed -->
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+            </article>
+        </div>
+    </section>
 
 
-    </ul>
+
+
+
+
+
+
     
 </body>
 </html>
