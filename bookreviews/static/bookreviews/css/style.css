@@ -48,6 +48,11 @@
   padding: 1rem 2rem;
 }
 
+#review_detail_book_title_link a{
+  font-weight: 900;
+  color: #0c7bdc;
+}
+
 #my-reviews-id-book-link {
   color: #787d84;
 }

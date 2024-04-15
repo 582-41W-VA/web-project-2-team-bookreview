@@ -21,7 +21,7 @@
             <p><strong>Review ID:</strong> {{ review.id }}</p>
             <p><strong>Review by:</strong> {{ review.user.username }}</p>
             <!-- <p><strong>Book ID:</strong> {{ review.book_id }}</p> -->
-            <p><strong>Book Title:</strong> {{ book_title }}</p>
+            <p id="review_detail_book_title_link" ><strong>Book Title:</strong> <a href=" {% url 'book_detail' review.book_id %} "> {{ book_title }} </a> </p>
             <p><strong>Book Author:</strong> {{ book_author }}</p>
             <!-- <p><strong>Book Description:</strong> {{ book_description }}</p> -->
             <!-- <p><strong>Book Category:</strong> {{ book_category }}</p> -->
