@@ -13,71 +13,120 @@
     <title>Admin Search Users and Reviews</title>
 </head>
 <body>
+    <section class="admin-search">
     <h1>User / Review / Comments Search</h1>
-    <fieldset>
+    <fieldset class="admin-search">
         <legend>Search Users or Reviews or Comments</legend>
-        <form method="GET" action="{% url 'search_users_reviews' %}">
+        <form class="admin-search-form" method="GET" action="{% url 'search_users_reviews' %}">
             {{ form.as_p }}
-            <button type="submit">Search</button>
+            
+            <button class="secondary-link-dark" type="submit">Search</button>
+            <!-- <i class="fa-solid fa-magnifying-glass"><a href=" {% url 'search_users_reviews' %}"><input class="ssearch-a" type="submit" value="Search  "></i> -->
         </form>
     </fieldset>
 
-    {% if users %}
+    <article class="admin-search-results">
+        {% if users %}
         <h2>Users Search Results</h2>
-        <ul>
-            {% for user in users %}
-                <li>{{ user.username }}</li>
-                <a href="{% url 'edit_user' user_id=user.id %}">Edit User</a>
-                <a href="{% url 'delete_user' user_id=user.id %}">Delete User</a>
-                <!-- You can display additional user information here -->
-            {% endfor %}
-        </ul>
+        <table class="admin-user-table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                        <td id="table_search_results_action_buttons">
+                            <div class="admin-buttons-div">
+                                <a href="{% url 'edit_user' user_id=user.id %}" class="admin-buttons">Edit User</a>
+                                <a href="{% url 'delete_user' user_id=user.id %}" class="admin-buttons">Delete User</a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     {% else %}
-        <p>No users found.</p>
+        <h2>No users found.</h2>
     {% endif %}
-
+    
     {% if reviews %}
-        <h2>Reviews Search Results</h2>
-        <ul>
-            {% for review in reviews reversed%}
-            
-                <li>
-                    <p>Review ID: <a href="{% url 'review_detail' review_id=review.id %}">{{ review.id }}</a></p>
-                    <p>{{ review.user.username }}'s review of  <a href="{% url 'book_detail' review.book_id %}">{{ review.book_title }}</a> </p> 
-                    <p>{{ review.review_content }} </p>
-                    <p>Published on {{ review.review_date }}</p>
-                 
-                    <a href="{% url 'edit_any_review' review_id=review.id %}">Edit Review</a>
-                    <a href="{% url 'delete_any_review' review_id=review.id %}">Delete Review</a>
-                <!-- You can display additional review information here -->
-                </li><br><br>
+    <h2>Reviews Search Results</h2>
+    <table class="admin-user-table">
+        <thead>
+            <tr>
+                <th>Review ID</th>
+                <th>User</th>
+                <th>Book Title</th>
+                <th>Published Date</th>
+                <th>Review Content</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for review in reviews reversed %}
+                <tr>
+                    <td id="table_search_results_review_id"><a href="{% url 'review_detail' review_id=review.id %}" class="secondary-link-dark">{{ review.id }}</a></td>
+                    <td id="table_search_results_username">{{ review.user.username }}</td>
+                    <td id="table_search_results_book_title"><a href="{% url 'book_detail' review.book_id %}" class="book-title-search-results-link">{{ review.book_title }}</a></td>
+                    <td id="table_search_results_published_date">{{ review.review_date }}</td>
+                    <td id="table-review-content">{{ review.review_content | safe }}</td>
+                    <td id="table_search_results_action_buttons">
+                        <div class="admin-buttons-div">
+                            <a href="{% url 'edit_any_review' review_id=review.id %}" class="admin-buttons">Edit Review</a>
+                            <a href="{% url 'delete_any_review' review_id=review.id %}" class="admin-buttons">Delete Review</a>
+                        </div>
+                    </td>
+                </tr>
             {% endfor %}
-        </ul>
+        </tbody>
+    </table>
     {% else %}
-        <p>No reviews found.</p>
-    {% endif %} 
-
+        <h2>No reviews found.</h2>
+    {% endif %}
+    
     {% if comments %}
         <h2>Comments Search Results</h2>
-        <ul>
-            {% if perms.bookreviews.can_delete_comments %}
-            {% for comment in comments reversed%}
-                <li>User {{ comment.user.username }}'s comment: {{ comment.comment_text }}</li>
-                <p>
-                    <form action=" {% url 'delete_comment' comment.id %}"method="POST">
-                    {% csrf_token %}
-                    <!-- <input type="submit" value="delete comment "> -->
-                    <button type="submit" value="delete comment ">Delete Comment</button>
-                    </form>
-                </p>
-                <!-- You can display additional comment information here -->
-            {% endfor %}
-            {% endif %}
-        </ul>
+        <table class="admin-user-table">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Comment</th>
+                    <th>Review ID</th>
+                    <th>Book Title</th>
+                    <th id="table_search_results_action_buttons">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for comment in comments reversed %}
+                    <tr>
+                        <td>{{ comment.user.username }}</td>
+                        <td>{{ comment.comment_text | safe }}</td>
+                        <td>{{ comment.review.id }}</td>
+                        <td><a href="{% url 'book_detail' comment.review.book_id %}" class="book-link">{{ comment.review.book_title }}</a></td>
+                        <td>
+                            {% if perms.bookreviews.can_delete_comments %}
+                                <form action="{% url 'delete_comment' comment.id %}" method="POST" class="comment-admin-form">
+                                    {% csrf_token %}
+                                    <button type="submit" class="admin-buttons">Delete Comment</button>
+                                </form>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     {% else %}
-        <p>No comments found.</p>
+        <h2>No comments found.</h2>
     {% endif %}
-
+    </article>
+    </section>
+    
     
 </body>
 </html>

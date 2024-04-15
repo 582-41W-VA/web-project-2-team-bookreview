@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from .views import my_reviews
 
@@ -36,4 +36,12 @@ urlpatterns = [
 
     path('total_reviews/', views.total_reviews, name='total_reviews'),
     path('search_users_reviews/', views.search_users_reviews, name='search_users_reviews'),
+
+    path('summernote/', include('django_summernote.urls')),
 ]
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

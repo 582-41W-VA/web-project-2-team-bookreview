@@ -14,10 +14,14 @@
     <title>Total Reviews </title>
 </head>
 <body>
-    {% if perms.bookreviews.can_view_all_reviews %}
-    <h1>Total Reviews</h1>
-    <p>Total number of reviews on this site: {{ total_reviews }}</p>
-    {% endif %}
+    <div class="container">
+        {% if perms.bookreviews.can_view_all_reviews %}
+        <div class="total-review-count">
+            <h2>Total Reviews</h2>
+            <h2>Total number of reviews on this site: {{ total_reviews }}</h2>
+        {% endif %}
+        </div>
+    </div>
     
 </body>
 </html>

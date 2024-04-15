@@ -4,8 +4,11 @@ from django import forms
 from .models import Review
 from .models import CustomUser
 from .models import Commenting
+from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
+
 
 class ReviewForm(forms.ModelForm):
+    review_content = forms.CharField(widget=SummernoteWidget())
     class Meta:
         model = Review
         fields = ['rating', 'review_content']
@@ -21,12 +24,14 @@ class RegistrationForm(UserCreationForm):
 
 
 class ReviewEditForm(forms.ModelForm):
+    review_content = forms.CharField(widget=SummernoteWidget())
     class Meta:
         model = Review
         fields = ['rating', 'review_content']
 
 
 class CommentForm(forms.ModelForm):
+
     class Meta:
         model = Commenting
         fields = ['comment_text']
@@ -50,6 +55,6 @@ class UserEditForm(forms.ModelForm):
 
 
 class CombinedSearchForm(forms.Form):
-    username = forms.CharField(label='Search for Username', max_length=100, required=False)
+    username = forms.CharField(label='Search for Username', max_length=255, required=False)
     review_content = forms.CharField(label='Search Review Content', max_length=255, required=False)
     comment_text = forms.CharField(label='Search Comment Text', max_length=255, required=False)

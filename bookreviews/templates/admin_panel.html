@@ -16,17 +16,24 @@
 
 <body>
 
-    <div id="admin-panel">
-        <h2>Admin Panel</h2>
-        <ul>
-            {% if perms.bookreviews.can_access_admin_panel %}
-            <p><a href="{% url 'list_users' %}">list users</a></p>
-            <p><a href="{% url 'total_reviews' %}">total reviews</a></p>
-            <p><a href="{% url 'search_users_reviews' %}">Search Users OR Reviews OR Comments</a></p>
+    <div class="container">
+        <article class="admin-panel">
+            <h1>Admin Panel</h1>
+                <ul class="admin-panel-list">
+                    {% if perms.bookreviews.can_access_admin_panel %}
+                    <li class="admin-panel-item">
+                        <a href="{% url 'list_users' %}">Users <br> <i class="fa-solid fa-users"></i></a>
+                    </li>
+                    <li class="admin-panel-item">
+                        <a href="{% url 'total_reviews' %}">Reviews <br><i class="fa-solid fa-feather"></i></a>
+                    </li>
+                    <li class="admin-panel-item">
+                        <a href="{% url 'search_users_reviews' %}">Admin Search <br> <i class="fa-solid fa-magnifying-glass"></i></a>
+                    </li>
+                    {% endif %}
+                </ul>
 
-            {% endif %}
-            <!-- Add more admin function links as needed -->
-        </ul>
+        </article>
     </div>
 
 </body>

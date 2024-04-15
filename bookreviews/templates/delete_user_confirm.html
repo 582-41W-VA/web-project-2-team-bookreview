@@ -13,14 +13,22 @@
 </head>
 <body>
     {% if perms.bookreviews.can_delete_users %}
-    <h1>Confirm Deleting a User by Admin</h1>
-    <p>Are you sure you want to delete the user {{ user.username }}?</p>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Yes, delete</button>
-        <button><a href="{% url 'admin_panel' %}">Cancel</a></button>
-    </form>
+    <article class="delete">
+        <h1>Delete User By Admin</h1>
+        <p>Are you sure you want to delete the user <strong>{{ user.username }}</strong></p>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="delete-buttons">
+                 <!-- while i am coding static, i used a instead of button. -->
+                 <button class="primary-button" type="submit">Yes, delete</button>
+                 <button class="primary-button" type="submit" formaction="{% url 'admin_panel' %}" >Cancel</button>
+            </div>
+        </form>
+    </article>
+
+
+
     {% endif %}
     
 </body>

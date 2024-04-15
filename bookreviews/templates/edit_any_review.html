@@ -13,15 +13,28 @@
     <link rel="stylesheet" href="{% static 'bookreviews/css/style.css' %}">
 </head>
 <body>
-    {% if perms.bookreviews.can_edit_reviews %}
-    <h1>Edit Review by Admin</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn" type="submit">Save Changes</button>
-        <button class="btn"><a href="{% url 'book_detail' book.id %}">Cancel</a></button>
-    </form>
-    {% endif %}
+
+        <div class="container">
+            <article class="review-forms">
+                <fieldset class="review_form">
+
+                    {% if perms.bookreviews.can_edit_reviews %}
+                    <legend>Edit Review by Admin<img src="/static/bookreviews/images/icons/user.png" alt="Image of a Quil Pen Icon" class="icon"></legend>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="delete-buttons">
+                        <button class="secondary-link-dark" type="submit">Save Changes</button>
+                        <button class="secondary-link-dark" type="submit" formaction="{% url 'book_detail' book.id %}">Cancel</button>
+                    </div>
+                    </form>
+                    {% endif %}
+
+                </fieldset>
+            </article>
+        </div>
+
 </body>
 </html>
 

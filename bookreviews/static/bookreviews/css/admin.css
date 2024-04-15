@@ -1,0 +1,334 @@
+/* ADMIN PAGES*/
+/* Admin panel*/
+
+.admin-buttons{
+  background: #525252;
+  color: #fafafa;
+  padding: 0.3rem 1rem;
+  border-radius: 5px;
+  margin: 0.5rem;
+  transition: all 0.5s ease;
+  display: block;
+  font-size: 1rem !important;
+}
+
+/* .admin-buttons-holder {
+  display: flex;
+  flex-direction: column;
+} */
+
+/*Review search results table columns ID's */
+/* table_search_results_review_id
+table_search_results_username
+table_search_results_book_title
+table_search_results_published_date
+table-review-content
+table_search_results_action_buttons */
+
+#table_search_results_action_buttons{
+  width: 12rem;
+}
+
+
+#table-review-content *{
+  text-align: left !important;
+  font-size: clamp(0.8rem, 2.5vw, 1rem) !important;
+  padding: 0.5rem 1.5rem !important;
+
+}
+
+#table-review-content{
+  /* max-width: 30rem !important; */
+}
+
+
+/* Added this to fix font size in the search results table  */
+/* .admin-user-table *{
+  font-size: clamp(0.8rem, 2.5vw, 1rem) !important;
+  line-height: 1.8rem;
+} */
+
+
+
+.admin-edit-user-form p{
+  display: flex;
+  flex-direction: column;
+  color: #fafafa;
+  /* width: 50%; */
+}
+
+.admin-edit-user-fieldset{
+  width: 50%;
+  margin: 2rem auto;
+}
+
+.user-detail p{
+  color: #fafafa;
+  font-size: 1.6rem;
+}
+
+.user-detail a{
+  color: #4797ff;
+  font-size: 1.6rem;
+}
+
+
+.total-review-count{
+  color: #e3eff1;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* //////////////// */
+
+.admin-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  padding: 80px 0;
+}
+
+.admin-panel-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 1rem;
+  justify-items: center;
+  align-items: center;
+  max-width: 700px;
+}
+
+.admin-panel-item {
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center;
+  padding: 2rem 0.5rem 1rem 0.5rem; /* top, right, bottom, left */
+  width: 200px;
+  display: inline-block;
+  aspect-ratio: 1/1;
+  border: 5px solid #fafafa;
+  transition: all 0.5s ease;
+}
+
+.admin-panel-item a {
+  color: #fafafa;
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(1rem, 5vw, 1.2rem);
+  text-transform: capitalize;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  align-self: center;
+  line-height: 1;
+}
+
+.admin-panel-item i {
+  color: #fafafa;
+  font-size: clamp(2rem, 5vw, 3rem);
+  transition: all 0.5s ease;
+  margin-top: 0.5rem;
+}
+
+.admin-panel-item i:hover {
+  color: #0c7bdc;
+}
+
+/* Admin user list*/
+/* .admin-user {
+  background-color: #1d2426;
+} */
+
+.admin-user h2 {
+  color: #fafafa;
+  font-size: clamp(1rem, 5vw, 1.2rem);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.admin-user-table {
+  width: 100%;
+  border-collapse: separate;
+  margin-bottom: 20px;
+  /* table-layout: fixed; */
+}
+
+
+.admin-user-table th,
+.admin-user-table td {
+  /* border-bottom: 3px solid #0c7bdc; */
+  padding: 0.5rem ;
+  font-size: 16px;
+  font-family: "Oswald", sans-serif;
+  /* overflow: hidden; */
+}
+
+.admin-user-table th,
+td {
+  background-color: #f2f2f2;
+  text-align: center;
+}
+
+.admin-user-table tr {
+  background-color: #0a0909;
+  transition: 0.5s;
+  vertical-align: top;
+}
+
+.admin-user-table tr:hover {
+  background-color: #858585;
+}
+
+/* .admin-button-holder {
+  text-align: center;
+} */
+
+td p{
+  font-family: "Oswald", sans-serif;
+  font-size: 25px;
+}
+
+/* Admin reviews*/
+
+.admin-panel-reviews {
+  background-color: #fafafa;
+  display: block;
+  justify-content: center;
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.admin-panel-reviews details {
+  padding: 1rem 0.5rem;
+  border-bottom: #0c7bdc 3px solid;
+}
+
+.admin-panel-reviews h2 {
+  font-family: "Oswald", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: capitalize;
+  font-weight: 500;
+  border-bottom: #0c7bdc 2px solid;
+}
+
+.admin-panel-reviews p {
+  font-size: 1rem;
+}
+
+.review-headers {
+  display: grid;
+  grid-template-columns: 2fr 2fr 5fr 5fr 1fr;
+  gap: 1rem;
+}
+
+.review-info {
+  display: grid;
+  grid-template-columns: 2fr 2fr 5fr 5fr 1fr;
+  gap: 1rem;
+}
+
+.review-info i {
+  color: #0c7bdc;
+}
+
+.review-headers a {
+  color: #1d2426;
+  text-decoration: none;
+}
+
+/* Admin search*/
+
+.admin-search {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.admin-search h2{
+  color: #fafafa;
+  margin-bottom: 10px;
+}
+
+.admin-search-form {
+  display: flex;
+  flex-direction: column;
+  /* width: 80%; */
+  padding: 0 !important;
+  margin: 0.5rem;
+}
+
+/* I added those style to the admin search form */
+.admin-search-form p {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.admin-search-form button {
+  /* padding: 1rem 0.5rem; */
+  width: 35%;
+  margin: 1rem auto 1rem  10%;
+  
+}
+
+.admin-search-form label {
+  color: #fafafa;
+}
+.admin-search-form i {
+  color: #fafafa;
+  font-size: 2rem;
+  display: inline-block;
+  width: 15%;
+}
+
+.secondary-link-white {
+  color: #fafafa;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 0.5rem 0.5rem;
+  border-bottom: #fafafa 5px solid;
+  border-left: transparent 3px solid;
+  border-right: transparent 1px solid;
+  transition: all 0.5s ease;
+}
+
+.secondary-link-white:hover {
+  border-bottom: #0c7bdc 5px solid;
+  border-left: #0c7bdc 3px solid;
+  border-right: #0c7bdc 1px solid;
+}
+
+.admin-column-result {
+  margin-bottom: 40px;
+}
+
+.admin-search-results li {
+  font-family: "Oswald", sans-serif;
+}
+
+/* Admin edit user*/
+.user-label {
+  color: #fafafa;
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(1rem, 5vw, 1.4rem);
+  text-transform: capitalize;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+
+.edit-user-form textarea {
+  padding: 0.5rem 1rem;
+  font-size: clamp(1rem, 5vw, 1.2rem);
+  letter-spacing: 0.04em;
+  font-weight: 400;
+  width: 70%;
+}
+
+.form-group-user {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  margin-bottom: 1rem;
+}
