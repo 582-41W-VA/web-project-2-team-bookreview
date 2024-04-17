@@ -370,16 +370,20 @@ def leave_review(request, book_id):
     }
 
     if not request.user.is_authenticated:
-        login_url = reverse("login")
-        login_link = f'<a class="login-link" href="{login_url}">Log in</a>'
-        register_link = (
-            f'<a class="register-link" href="{reverse("register")}">Register</a>'
-        )
-        messages.info(
-            request,
-            f"You need to log in to leave a review. Please {login_link} or {register_link}.",
-        )
+        messages.info(request, "You need to log in to leave a review.")
         return redirect("login")
+
+    # if not request.user.is_authenticated:
+    #     login_url = reverse("login")
+    #     login_link = f'<a class="login-link" href="{login_url}">Log in</a>'
+    #     register_link = (
+    #         f'<a class="register-link" href="{reverse("register")}">Register</a>'
+    #     )
+    #     messages.info(
+    #         request,
+    #         f"You need to log in to leave a review. Please {login_link} or {register_link}.",
+    #     )
+    #     return redirect("login")
 
     if request.method == "POST":
         form = ReviewForm(request.POST)
@@ -397,8 +401,8 @@ def leave_review(request, book_id):
     else:
         form = ReviewForm()
 
-    if not request.user.is_authenticated:
-        messages.info(request, "You need to log in to leave a review.")
+    # if not request.user.is_authenticated:
+    #     messages.info(request, "You need to log in to leave a review.")
 
     return render(request, "leave_review.html", {"form": form, "book": book_data})
 

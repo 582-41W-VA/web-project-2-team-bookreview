@@ -55,7 +55,8 @@ header {
   align-items: center;
 }
 
-.logo a img {
+.logo a img,
+.footer-logo a img {
   height: 100px;
   margin:  0;
   border-bottom: 5px transparent solid;

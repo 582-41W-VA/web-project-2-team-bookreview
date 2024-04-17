@@ -153,6 +153,11 @@
     background-color: #1d2426; 
   }
 
+  .alert-info{
+    background-color: #ff0400;
+    padding: 2rem 0;
+  }
+
   /* //////// reviews section/////// */
 
 

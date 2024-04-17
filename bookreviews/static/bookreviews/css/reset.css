@@ -202,11 +202,13 @@ justify-content:flex-start;
 }
 
 /* logo */
-.logo a img {
+.logo a img,
+.authentication-logo a img {
 border-bottom: 5px transparent solid;
 }
 
-.logo a img:hover {
+.logo a img:hover,
+.authentication-logo a img:hover {
 border-bottom: #FAFAFA 5px solid;
 }
 /* page title */
