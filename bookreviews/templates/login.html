@@ -13,6 +13,13 @@
 </head>
 <body>
     <main>
+        {% if messages %}
+        {% for message in messages %}
+            <h1 class="alert alert-info" role="alert">
+                {{ message|safe }}
+            </h1>
+        {% endfor %}
+        {% endif %}
         <div class="container">
             <article class="authentication-article" data-aos="fade-down">
                 <figure class="authentication-logo">  
@@ -23,13 +30,13 @@
             
 
             
-            {% if messages %}
+            <!-- {% if messages %}
                 {% for message in messages %}
                     <div class="alert alert-info" role="alert">
                         {{ message|safe }}
                     </div>
                 {% endfor %}
-            {% endif %}
+            {% endif %} -->
     
             <div class="authentication-div" >
                 <form method="post" class="authentication-form">

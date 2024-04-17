@@ -404,6 +404,7 @@ def leave_review(request, book_id):
     # if not request.user.is_authenticated:
     #     messages.info(request, "You need to log in to leave a review.")
 
+
     return render(request, "leave_review.html", {"form": form, "book": book_data})
 
 
