@@ -17,21 +17,18 @@
 <body>
     <div class="container">
     <h1>Review Details</h1>
-        <div class="review-details">
-            <p><strong>Review ID:</strong> {{ review.id }}</p>
-            <p><strong>Review by:</strong> {{ review.user.username }}</p>
-            <!-- <p><strong>Book ID:</strong> {{ review.book_id }}</p> -->
-            <p><strong>Book Title:</strong> {{ book_title }}</p>
-            <p><strong>Book Author:</strong> {{ book_author }}</p>
-            <!-- <p><strong>Book Description:</strong> {{ book_description }}</p> -->
-            <!-- <p><strong>Book Category:</strong> {{ book_category }}</p> -->
-            <p><strong>Review Date:</strong> {{ review.review_date }}</p>
-            <p><strong>Rating:</strong> {{ review.rating }}/5</p>
-            <p><strong>The Review:</strong></p>
-            <div id="review-content">
+        <ul class="review-details">
+            <li><strong>Review ID:</strong> {{ review.id }}</li>
+            <li><strong>Review by:</strong> {{ review.user.username }}</li>
+            <li id="review_detail_book_title_link" ><strong>Book Title:</strong> <a href=" {% url 'book_detail' review.book_id %} "> {{ book_title }} </a> </li>
+            <li><strong>Book Author:</strong> {{ book_author }}</li>
+            <li><strong>Review Date:</strong> {{ review.review_date }}</li>
+            <li><strong>Rating:</strong> {{ review.rating }}/5</li>
+            <li><strong>The Review:</strong></li>
+            <li id="review-content">
                  {{ review.review_content | safe }}
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
 
 </body>

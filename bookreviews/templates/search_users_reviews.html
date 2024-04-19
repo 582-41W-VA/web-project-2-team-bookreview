@@ -107,7 +107,7 @@
                     <tr>
                         <td>{{ comment.user.username }}</td>
                         <td>{{ comment.comment_text | safe }}</td>
-                        <td>{{ comment.review.id }}</td>
+                        <td><a href="{% url 'review_detail' comment.review.id %}" class="secondary-link-dark">{{ comment.review.id }}</a></td>
                         <td><a href="{% url 'book_detail' comment.review.book_id %}" class="book-link">{{ comment.review.book_title }}</a></td>
                         <td>
                             {% if perms.bookreviews.can_delete_comments %}

@@ -13,6 +13,7 @@ class ReviewForm(forms.ModelForm):
         model = Review
         fields = ['rating', 'review_content']
 
+
 class RegistrationForm(UserCreationForm):
     class Meta:
         model = CustomUser
@@ -20,7 +21,6 @@ class RegistrationForm(UserCreationForm):
         widgets = {
             'password': forms.PasswordInput()
         }
-
 
 
 class ReviewEditForm(forms.ModelForm):
@@ -31,7 +31,6 @@ class ReviewEditForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
-
     class Meta:
         model = Commenting
         fields = ['comment_text']
@@ -48,7 +47,7 @@ class SearchForm(forms.Form):
 class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['username', 'email', 'first_name', 'last_name']  # Add fields you want to allow editing
+        fields = ['username', 'email', 'first_name', 'last_name']
 
     def __init__(self, *args, **kwargs):
         super(UserEditForm, self).__init__(*args, **kwargs)
