@@ -21,12 +21,8 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 from django.urls import reverse
 
-# from django.views.decorators.cache import cache_page
-# from django.utils.decorators import method_decorator
-# from django.core.cache import cache
 
-
-#### admin panel #####
+#### admin panel functions #####
 
 
 @login_required
@@ -253,7 +249,6 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            #   user.set_password(form.cleaned_data['password'])
             user.save()
             return redirect("login")
     else:
@@ -288,9 +283,7 @@ def index(request):
     google_book_api = "https://www.googleapis.com/books/v1/volumes"
     params = {
         "q": "subject:science fiction|classic|crime and mystery|fantasy|true crime|Fiction",
-        # "q": "subject: fiction",
         "maxResults": 40,
-        # "fields": "items(id,volumeInfo/title,volumeInfo/authors,volumeInfo/imageLinks,volumeInfo/categories,volumeInfo/description)",
     }
 
     response = requests.get(google_book_api, params=params).json()
@@ -314,7 +307,6 @@ def index(request):
     return render(request, "index.html", context)
 
 
-# @login_required
 def book_detail(request, book_id):
     """Function to display book details"""
     google_book_api = "https://www.googleapis.com/books/v1/volumes/{}".format(book_id)
@@ -348,7 +340,6 @@ def book_detail(request, book_id):
     )
 
 
-# @login_required
 def leave_review(request, book_id):
     """Function to leave a book review."""
     google_book_api = "https://www.googleapis.com/books/v1/volumes/{}".format(book_id)
@@ -373,18 +364,6 @@ def leave_review(request, book_id):
         messages.info(request, "You need to log in to leave a review.")
         return redirect("login")
 
-    # if not request.user.is_authenticated:
-    #     login_url = reverse("login")
-    #     login_link = f'<a class="login-link" href="{login_url}">Log in</a>'
-    #     register_link = (
-    #         f'<a class="register-link" href="{reverse("register")}">Register</a>'
-    #     )
-    #     messages.info(
-    #         request,
-    #         f"You need to log in to leave a review. Please {login_link} or {register_link}.",
-    #     )
-    #     return redirect("login")
-
     if request.method == "POST":
         form = ReviewForm(request.POST)
         if form.is_valid():
@@ -400,10 +379,6 @@ def leave_review(request, book_id):
             return redirect("book_detail", book_id=book_id)
     else:
         form = ReviewForm()
-
-    # if not request.user.is_authenticated:
-    #     messages.info(request, "You need to log in to leave a review.")
-
 
     return render(request, "leave_review.html", {"form": form, "book": book_data})
 

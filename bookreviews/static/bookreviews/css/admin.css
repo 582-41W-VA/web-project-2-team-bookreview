@@ -1,7 +1,7 @@
 /* ADMIN PAGES*/
 /* Admin panel*/
 
-.admin-buttons{
+.admin-buttons {
   background: #525252;
   color: #fafafa;
   padding: 0.3rem 1rem;
@@ -25,55 +25,38 @@ table_search_results_published_date
 table-review-content
 table_search_results_action_buttons */
 
-#table_search_results_action_buttons{
+#table_search_results_action_buttons {
   width: 12rem;
 }
 
-
-#table-review-content *{
+#table-review-content * {
   text-align: left !important;
   font-size: clamp(0.8rem, 2.5vw, 1rem) !important;
   padding: 0.5rem 1.5rem !important;
-
 }
 
-/* #table-review-content{
-  max-width: 30rem !important;
-} */
-
-
-/* Added this to fix font size in the search results table  */
-/* .admin-user-table *{
-  font-size: clamp(0.8rem, 2.5vw, 1rem) !important;
-  line-height: 1.8rem;
-} */
-
-
-
-.admin-edit-user-form p{
+.admin-edit-user-form p {
   display: flex;
   flex-direction: column;
   color: #fafafa;
-  /* width: 50%; */
 }
 
-.admin-edit-user-fieldset{
+.admin-edit-user-fieldset {
   width: 50%;
   margin: 2rem auto;
 }
 
-.user-detail p{
+.user-detail p {
   color: #fafafa;
   font-size: 1.6rem;
 }
 
-.user-detail a{
+.user-detail a {
   color: #4797ff;
   font-size: 1.6rem;
 }
 
-
-.total-review-count{
+.total-review-count {
   color: #e3eff1;
   padding: 2rem;
   text-align: center;
@@ -134,11 +117,6 @@ table_search_results_action_buttons */
   color: #0c7bdc;
 }
 
-/* Admin user list*/
-/* .admin-user {
-  background-color: #1d2426;
-} */
-
 .admin-user h2 {
   color: #fafafa;
   font-size: clamp(1rem, 5vw, 1.2rem);
@@ -153,11 +131,10 @@ table_search_results_action_buttons */
   /* table-layout: fixed; */
 }
 
-
 .admin-user-table th,
 .admin-user-table td {
   /* border-bottom: 3px solid #0c7bdc; */
-  padding: 0.5rem ;
+  padding: 0.5rem;
   font-size: 16px;
   font-family: "Oswald", sans-serif;
   /* overflow: hidden; */
@@ -179,11 +156,7 @@ td {
   background-color: #858585;
 }
 
-/* .admin-button-holder {
-  text-align: center;
-} */
-
-td p{
+td p {
   font-family: "Oswald", sans-serif;
   font-size: 25px;
 }
@@ -246,7 +219,7 @@ td p{
   margin-right: auto;
 }
 
-.admin-search h2{
+.admin-search h2 {
   color: #fafafa;
   margin-bottom: 10px;
 }
@@ -268,10 +241,8 @@ td p{
 }
 
 .admin-search-form button {
-  /* padding: 1rem 0.5rem; */
   width: 35%;
-  margin: 1rem auto 1rem  10%;
-  
+  margin: 1rem auto 1rem 10%;
 }
 
 .admin-search-form label {
