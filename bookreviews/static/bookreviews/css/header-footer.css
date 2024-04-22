@@ -8,11 +8,11 @@
   text-decoration: none;
   font-family: "Oswald", sans-serif;
   letter-spacing: 0.04em;
-  font-size: clamp(.1rem, 5vw, 1.4rem);
+  font-size: clamp(1rem, 3vw, 1.4rem);
   text-transform: capitalize;
   font-weight: 500;
   display: inline-block;
-  padding: 0.5rem 0.5rem 2rem; 
+  padding: 0.5rem 0.5rem 1rem; 
   transition: all 0.5s ease-in;
 }
 
@@ -113,7 +113,7 @@ nav a:hover{
 
 .search-form i {
   color: #FAFAFA;
-  font-size: 2rem;
+  font-size: clamp(1.2rem, 3vw, 1.4rem);
 }
 
 .search-form button {
@@ -199,9 +199,6 @@ footer p {
     display: none;
   }
 
-  .hello-user{
-    display: none;
-  }
 
   .footer-wrap {
     display: block;

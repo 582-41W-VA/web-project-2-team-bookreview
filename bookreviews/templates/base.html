@@ -5,6 +5,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Website{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'bookreviews/css/reset.css' %}">
@@ -69,7 +70,7 @@
             <div class="header-small-wrap">
                 <form method="GET" action="{% url 'search_books' %}" class="search-form">
                     <label for="id_query" id="book-search-label">Book Search:</label>
-                    <input type="text" id="id_query" name="query" maxlength="100" placeholder="Enter your search term...">
+                    <input type="text" id="id_query" name="query" maxlength="100" placeholder="Enter Search Term">
                     <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
             </div>

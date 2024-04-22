@@ -31,12 +31,9 @@
                         <h2>Title: {{ book.title }}</h2>
                         <h3>Author: {{ book.author }}</h3>
                         <h3>Categories: {{ book.category }}</h3>
+                        <a id="read-more-link" href="{% url 'book_detail' book.id %}" class="primary-link">Read More</a>
                     </figcaption>
                 </figure>
-                <div class="book-card-bottom">
-                    <h4>Author: {{ book.author }}</h4> 
-                    <a href="{% url 'book_detail' book.id %}" class="primary-link">Read More</a>
-                </div>
             </article>
              <!-- End of the Book Article -->
         {% endfor %}
