@@ -2,6 +2,26 @@
 
 /* additional styles */
 
+#read-more-link {
+  /* margin: 0.5rem 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #00b1ec;
+  font-family: Roboto;
+  text-decoration: none;
+  transition: all 0.5s ease;
+  text-align: left !important; */
+  margin: 1rem 0 0 0 !important;
+  background-color: rgba(110, 110, 110, 0.537);
+  padding: 0.5rem 2.5rem !important;
+}
+
+#read-more-link:hover {
+  background-color: #FAFAFA;
+  color: #1d2426;
+  border-bottom: #0C7BDC 5px solid;
+  }
+
 .admin-button-holder {
   margin-top: 1.5rem;
   display: flex;
@@ -211,6 +231,10 @@ header li p {
 /* MEDIA QUERRIES FOR HOME PAGE */
 /* Media query for screens smaller than 768px */
 @media screen and (max-width: 768px) {
+  .hello-user{
+    display: none;
+  }
+
   .book-intro-card {
     display: block;
     text-align: center;
@@ -366,7 +390,7 @@ summary::marker {
 }
 
 .other-single-comment {
-  background-color: #ffffff;
+  background-color: #e1e9ef;
   padding: 0.5rem 0.5rem;
   margin: 1rem auto;
   box-shadow: 3px 3px 3px 2px rgba(31, 31, 31, 0.557);
